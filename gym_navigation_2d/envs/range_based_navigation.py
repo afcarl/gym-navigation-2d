@@ -5,8 +5,11 @@ from env_generator import Environment, EnvironmentCollection
 from gym.envs.classic_control import rendering
 from gym.spaces import Box, Tuple
 
-from math import pi
+from math import pi, cos, sin
 import numpy as np
+
+import matplotlib.cm as cmx
+import matplotlib.colors as colors
 
 class LimitedRangeBasedNavigation2DEnv(gym.Env):
     metadata = {'render.modes': ['human']}
@@ -23,6 +26,7 @@ class LimitedRangeBasedNavigation2DEnv(gym.Env):
         self.max_speed = 5
         self.action_space = Tuple( (Box(0.0, self.max_speed, (1,)), Box(0.0, 2*pi, (1,))) ) 
         self.observation_space = Box(-1.0, self.max_observation_range, (self.num_beams,)) 
+        self.observation = []
         
     def set_initial_position(self, init_position):
         self.init_position = init_position
@@ -40,7 +44,12 @@ class LimitedRangeBasedNavigation2DEnv(gym.Env):
         
     def _step(self, action):
         old_state = self.state
-        self.state += np.array([ action[0][0], action[1][0] ])
+        v = action[0][0]
+        theta = action[1][0]
+        dx = v*cos(theta)
+        dy = v*sin(theta)
+        
+        self.state += np.array([dx, dy])
         
         reward = 0
         done = False
@@ -74,14 +83,17 @@ class LimitedRangeBasedNavigation2DEnv(gym.Env):
             self.viewer = None
             return
 
-        screen_width = self.world.x_range[1] - self.world.x_range[0]
-        screen_height = self.world.y_range[1] - self.world.y_range[0]
+        screen_width = (self.world.x_range[1] - self.world.x_range[0])
+        screen_height = (self.world.y_range[1] - self.world.y_range[0])
 
         if self.viewer is None:
             
             self.viewer = rendering.Viewer(screen_width, screen_height)
+            self.viewer.set_bounds(left=-100, right=screen_width+100, bottom=-100, top=screen_height+100)
+            
+            L = len(self.world.obstacles)
+            for i in xrange(L):
 
-            for i in xrange(len(self.world.obstacles)):
                 obs = self.world.obstacles[i]
                 for c,w,h in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights):
                     l = -w/2.0
@@ -92,8 +104,41 @@ class LimitedRangeBasedNavigation2DEnv(gym.Env):
                     rectangle = rendering.FilledPolygon([(l,b), (l,t), (r,t), (r,b)])
                     tr = rendering.Transform(translation=(c[0], c[1]))
                     rectangle.add_attr(tr)
-                    self.viewer.add_geom(rectangle)
                     rectangle.set_color(.8,.6,.4)
+                    self.viewer.add_geom(rectangle)
+                    
+            self.state_tr = rendering.Transform(translation=(self.state[0], self.state[1]))
+            polygon =  rendering.make_circle(radius=5, res=30, filled=True)
+            polygon.add_attr(self.state_tr)
+            self.viewer.add_geom(polygon)
+                    
+                    
+            tr = rendering.Transform(translation=(self.destination[0], self.destination[1]))
+            polygon = rendering.make_circle(radius=self.destination_tolerance_range, res=30, filled=True)
+            polygon.add_attr(tr)
+            polygon.set_color(1.0, 0., 0.)
+            self.viewer.add_geom(polygon)
+
+                
+                
+        self.state_tr.set_translation(self.state[0], self.state[1])
+        delta_angle = 2*pi/self.num_beams
+        
+        for i in xrange(len(self.observation)):
+            r = self.observation[i]
+            if r < 0:
+                r = self.max_observation_range
+                
+            theta = i*delta_angle
+            start = (self.state[0], self.state[1])
+            end = (self.state[0] + r*cos(theta), self.state[1] + r*sin(theta))
+            
+            line = rendering.Line(start=start, end=end)
+            line.set_color(.5, 0.5, 0.5)
+            self.viewer.add_onetime(line)
 
             
+
+        
+        return self.viewer.render(return_rgb_array = mode=='rgb_array')
         

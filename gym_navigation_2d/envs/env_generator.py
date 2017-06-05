@@ -1,9 +1,13 @@
+#!/usr/bin/python
+
 import scipy
 from scipy import stats
 import numpy as np
 from math import sqrt, asin, cos, sin
 import networkx as nx
 from geometry_utils import *
+import sys
+import pickle
 
 class Obstacle(object):
     def __init__(self, c, w, h):
@@ -203,7 +207,16 @@ class EnvironmentGenerator(object):
 
 
 class EnvironmentCollection(object):
-    def __init__(self, x_range, y_range, width_range, height_range, density, num_environments):
+
+    def __init__(self):
+        self.x_range = []
+        self.y_range = []
+        self.width_range = []
+        self.height_range = []
+        self.num_environments = 0
+        self.map_collection = {}
+        
+    def generate_random(self, x_range, y_range, width_range, height_range, density, num_environments):
         self.x_range = x_range
         self.y_range = y_range
         self.width_range = width_range
@@ -217,7 +230,7 @@ class EnvironmentCollection(object):
             obstacles = eg.merge_rectangles_into_obstacles(centers, widths, heights, epsilon=0.2)
             self.map_collection[i] = Environment(self.x_range, self.y_range, obstacles)
 
-    def __init__(self, pkl_filename):
+    def read(self, pkl_filename):
         file_object = open(pkl_filename, 'r')
         self.map_collection = pickle.load(file_object)
         file_object.close()
@@ -227,3 +240,23 @@ class EnvironmentCollection(object):
         pickle.dump(self.map_collection, file_object)
         file_object.close()
 
+
+
+
+if __name__ == "__main__":
+
+    if len(sys.argv) < 2:
+        print "Usage: python env_generator.py filename_to_save.pkl"
+        sys.exit(0)
+
+    x_range=[0, 640]
+    y_range=[0, 480]
+    width_range=[10, 30]
+    height_range=[10,50]
+
+    density = 0.0003
+    num_environments = 2
+
+    ec = EnvironmentCollection()
+    ec.generate_random(x_range, y_range, width_range, height_range, density, num_environments)
+    ec.save(sys.argv[1])
