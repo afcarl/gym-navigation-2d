@@ -12,8 +12,8 @@ worlds = EnvironmentCollection()
 worlds.read(worlds_pickle_filename)
 
 env.world = worlds.map_collection[0]
-env.set_initial_position(np.array([-20.0, -20.0]))
 env.set_destination(np.array([520.0, 400.0]))
+env.set_initial_position(np.array([-20.0, -20.0]))
 env.max_observation_range = 100.0
 env.destination_tolerance_range = 20.0
 

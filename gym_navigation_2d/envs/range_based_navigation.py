@@ -29,6 +29,7 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
         self.observation = []
         
     def set_initial_position(self, init_position):
+        assert not (self.destination is None)
         self.init_position = init_position
         self.state = self.init_position.copy()
         self.observation = self._get_observation(self.state)

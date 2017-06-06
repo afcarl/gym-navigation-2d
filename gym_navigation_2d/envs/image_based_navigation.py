@@ -5,107 +5,29 @@ from env_generator import Environment, EnvironmentCollection
 from gym.envs.classic_control import rendering
 from gym.spaces import Box, Tuple
 
-from math import pi
+from range_based_navigation import StateBasedMDPNavigation2DEnv
+from math import pi, cos, sin
+import numpy as np
+import cv2
 
-"""TODO: this is to be fixed soon"""
-class ImageBasedNavigation2DEnv(gym.Env):
+
+class ImageBasedNavigation2DEnv(StateBasedMDPNavigation2DEnv):
     metadata = {'render.modes': ['human']}
 
     def __init__(self):
-        self.world = None
-        self.destination = None
-        self.state = np.array([0,0])
-        self.init_position = self.state.copy()
-        self.max_observation_range = 10
-        self.destination_tolerance_range = 5
-        self.viewer = None
-        self.num_beams = 16
-        self.max_speed = 5
+        StateBasedMDPNavigation2DEnv.__init__(self)
         
-    def set_initial_position(self, init_position):
-        self.init_position = init_position
-        self.state = self.init_position.copy()
-
-    def set_destination(self, destination):
-        self.destination = destination
-
-
-    def action_space(self):
-        return Tuple(Box(0, self.max_speed, (1,)), Box(0, 2*pi, (1,)))
- 
-    def observation_space(self):
-        return Box(-1, self.max_observation_range, (self.num_beams,))
-    
     def _get_observation(self, state):
-        delta_angle = 2*pi/self.num_beams
-        ranges = [self.world.raytrace(self.state,
-                                      i * delta_angle,
-                                      self.max_observation_range) for i in xrange(self.num_beams)]
-        return ranges
+        image = self.world.image.copy()
+
+        state_col = int(self.state[0])
+        state_row = (self.world.image.shape[0] - 1) - int(self.state[1])
+
+        print self.destination
+        dest_col = int(self.destination[0])
+        dest_row = (self.world.image.shape[0] - 1) - int(self.destination[1])
         
-    def _step(self, action):
-        old_state = self.state
-        self.state += action
+        cv2.circle(image, center=(state_col, state_row), radius=5, color=(0,0,0), thickness=-1)
+        cv2.circle(image, center=(dest_col, dest_row), radius=int(self.destination_tolerance_range), color=(255,0,0), thickness=-1)
         
-        reward = 0
-        done = False
-        info = {}
-
-        if np.linalg.norm(self.destination - self.state) < self.destination_tolerance_range:
-            reward = 1
-            done = True
-            
-        if not self.world.point_is_in_free_space(self.state[0], self.state[1], epsilon=0.25):
-            reward = -1
-
-        if not self.world.segment_is_in_free_space(old_state[0], old_state[1],
-                                                   self.state[0], self.state[1],
-                                                   epsilon=0.25):
-            reward = -1
-            
-        self.observation = self._get_observation(self.state)
-        return self.observation, reward, done, info
-
-    
-    def _reset(self):
-        self.state = self.init_position
-
-        
-    def _render(self, mode='human', close=False):
-
-        if close:
-            if self.viewer is not None:
-                self.viewer.close()
-            self.viewer = None
-            return
-
-        screen_width = 600
-        screen_height = 400
-
-        world_width = self.x_threshold*2
-        scale = screen_width/world_width
-        carty = 100 # TOP OF CART
-        polewidth = 10.0
-        polelen = scale * 1.0
-        cartwidth = 50.0
-        cartheight = 30.0
-
-        if self.viewer is None:
-            
-            self.viewer = rendering.Viewer(screen_width, screen_height)
-
-            for i in xrange(self.world.obstacles):
-                for c,w,h in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights):
-                    l = -w/2.0
-                    r = w/2.0
-                    t = h/2.0
-                    b = -h/2.0
-
-                    rectangle = rendering.FilledPolygon([(l,b), (l,t), (r,t), (r,b)])
-                    tr = rendering.Transform(translation=(c[0], c[1]))
-                    rectangle.add_attr(tr)
-                    self.viewer.add_geom(rectangle)
-                    pole.set_color(.8,.6,.4)
-
-            
-                                                        
+        return image

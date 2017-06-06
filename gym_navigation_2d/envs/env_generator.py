@@ -69,7 +69,7 @@ class Environment(object):
                 min_col = max(int(c - wo/2.0), 0)
                 max_col = min(int(c + wo/2.0), w-1)
                 
-                self.image[min_row:max_row, min_col:max_col, :] = 0
+                self.image[min_row:max_row, min_col:max_col, :] = (204, 153, 102) 
 
         
     def point_distance_from_obstacles(self, x, y):
