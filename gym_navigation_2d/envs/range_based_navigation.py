@@ -176,13 +176,14 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
 class StateBasedMDPNavigation2DEnv(LimitedRangeBasedPOMDPNavigation2DEnv):
     def __init__(self, *args, **kwargs):
         LimitedRangeBasedPOMDPNavigation2DEnv.__init__(self, *args, **kwargs)
-        low = np.array([-float('inf'), 0.0, 0.0])
-        high = np.array([float('inf'), float('inf'), 2*pi])
+        low = np.array([-float('inf'), -float('inf'), 0.0, 0.0])
+        high = np.array([float('inf'), float('inf'), float('inf'), 2*pi])
         self.observation_space = Box(low, high)
-        
+
     def _plot_observation(self, viewer, state, observation):
         pass
 
     def _get_observation(self, state):
+        # return state
         dist_to_closest_obstacle, absolute_angle_to_closest_obstacle = self.world.range_and_bearing_to_closest_obstacle(state[0], state[1])
         return np.array([state[0], state[1], dist_to_closest_obstacle, absolute_angle_to_closest_obstacle])

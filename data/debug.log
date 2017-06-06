@@ -253,3 +253,350 @@
 2017-06-05 22:36:37.001514 EDT | action space: Box(2,)
 2017-06-05 22:36:37.001944 EDT | itr #0 | Obtaining samples...
 2017-06-05 22:36:37.002062 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 23:02:16.895460 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:02:39.016597 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:02:52.786656 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:03:10.475813 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:03:27.432134 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:03:48.116703 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:03:49.694858 EDT | observation space: Box(3,)
+2017-06-05 23:03:49.695101 EDT | action space: Box(2,)
+2017-06-05 23:03:49.853364 EDT | Training Policy on State-Based-MDP-Navigation-2d-Map0-v0
+2017-06-05 23:03:50.733977 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:03:50.753927 EDT | observation space: Box(3,)
+2017-06-05 23:03:50.754104 EDT | action space: Box(2,)
+2017-06-05 23:03:50.754530 EDT | itr #0 | Obtaining samples...
+2017-06-05 23:03:50.754646 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 23:05:04.083774 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:07:12.271398 EDT | observation space: Box(3,)
+2017-06-05 23:07:12.271678 EDT | action space: Box(2,)
+2017-06-05 23:07:12.411176 EDT | Training Policy on State-Based-MDP-Navigation-2d-Map0-v0
+2017-06-05 23:07:13.216484 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:07:14.497406 EDT | observation space: Box(3,)
+2017-06-05 23:07:14.497664 EDT | action space: Box(2,)
+2017-06-05 23:07:14.498334 EDT | itr #0 | Obtaining samples...
+2017-06-05 23:07:14.498534 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 23:07:24.328714 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:07:25.581904 EDT | observation space: Box(4,)
+2017-06-05 23:07:25.582127 EDT | action space: Box(2,)
+2017-06-05 23:07:25.742231 EDT | Training Policy on State-Based-MDP-Navigation-2d-Map0-v0
+2017-06-05 23:07:26.560028 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:07:26.580241 EDT | observation space: Box(4,)
+2017-06-05 23:07:26.580519 EDT | action space: Box(2,)
+2017-06-05 23:07:26.581094 EDT | itr #0 | Obtaining samples...
+2017-06-05 23:07:26.581243 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 23:08:05.054282 EDT | itr #0 | Processing samples...
+2017-06-05 23:08:05.061885 EDT | itr #0 | fitting baseline...
+2017-06-05 23:08:05.064889 EDT | itr #0 | fitted
+2017-06-05 23:08:05.065343 EDT | itr #0 | Logging diagnostics...
+2017-06-05 23:08:05.065674 EDT | itr #0 | Optimizing policy...
+2017-06-05 23:08:05.065872 EDT | itr #0 | Computing loss before
+2017-06-05 23:08:05.078065 EDT | itr #0 | Computing KL before
+2017-06-05 23:08:05.083509 EDT | itr #0 | Optimizing
+2017-06-05 23:08:05.086407 EDT | itr #0 | Start CG optimization: #parameters: 6879, #inputs: 1000, #subsample_inputs: 1000
+2017-06-05 23:08:05.086541 EDT | itr #0 | computing loss before
+2017-06-05 23:08:05.088203 EDT | itr #0 | performing update
+2017-06-05 23:08:05.088385 EDT | itr #0 | computing gradient
+2017-06-05 23:08:05.116940 EDT | itr #0 | gradient computed
+2017-06-05 23:08:05.117253 EDT | itr #0 | computing descent direction
+2017-06-05 23:08:05.292296 EDT | itr #0 | descent direction computed
+2017-06-05 23:08:05.301932 EDT | itr #0 | backtrack iters: 1
+2017-06-05 23:08:05.302106 EDT | itr #0 | computing loss after
+2017-06-05 23:08:05.302213 EDT | itr #0 | optimization finished
+2017-06-05 23:08:05.302317 EDT | itr #0 | Computing KL after
+2017-06-05 23:08:05.303717 EDT | itr #0 | Computing loss after
+2017-06-05 23:08:05.305088 EDT | itr #0 | Saving snapshot...
+2017-06-05 23:08:05.305226 EDT | itr #0 | Saved
+2017-06-05 23:08:05.311516 EDT | -----------------------  ---------------
+2017-06-05 23:08:05.311669 EDT | PolicyExecTime               0.617892
+2017-06-05 23:08:05.311771 EDT | EnvExecTime                 37.8158
+2017-06-05 23:08:05.311867 EDT | ProcessExecTime              0.0245745
+2017-06-05 23:08:05.311963 EDT | Iteration                    0
+2017-06-05 23:08:05.312060 EDT | AverageDiscountedReturn    -99.9957
+2017-06-05 23:08:05.312154 EDT | AverageReturn            -1000
+2017-06-05 23:08:05.312249 EDT | ExplainedVariance            2.53478e-11
+2017-06-05 23:08:05.312354 EDT | NumTrajs                     1
+2017-06-05 23:08:05.312449 EDT | Entropy                      2.83788
+2017-06-05 23:08:05.312542 EDT | Perplexity                  17.0795
+2017-06-05 23:08:05.312635 EDT | StdReturn                    0
+2017-06-05 23:08:05.312729 EDT | MaxReturn                -1000
+2017-06-05 23:08:05.312823 EDT | MinReturn                -1000
+2017-06-05 23:08:05.312934 EDT | AveragePolicyStd             1
+2017-06-05 23:08:05.313028 EDT | LossBefore                  -4.48227e-08
+2017-06-05 23:08:05.313122 EDT | LossAfter                   -0.00482925
+2017-06-05 23:08:05.313217 EDT | MeanKLBefore                 0
+2017-06-05 23:08:05.313312 EDT | MeanKL                       0.00782341
+2017-06-05 23:08:05.313406 EDT | dLoss                        0.0048292
+2017-06-05 23:08:05.313501 EDT | Time                        38.7243
+2017-06-05 23:08:05.313594 EDT | ItrTime                     38.7243
+2017-06-05 23:08:05.313688 EDT | -----------------------  ---------------
+2017-06-05 23:08:05.313891 EDT | itr #1 | Obtaining samples...
+2017-06-05 23:08:05.314001 EDT | itr #1 | Obtaining samples for iteration 1...
+2017-06-05 23:08:44.203479 EDT | itr #1 | Processing samples...
+2017-06-05 23:08:44.204462 EDT | itr #1 | fitting baseline...
+2017-06-05 23:08:44.205031 EDT | itr #1 | fitted
+2017-06-05 23:08:44.205352 EDT | itr #1 | Logging diagnostics...
+2017-06-05 23:08:44.205635 EDT | itr #1 | Optimizing policy...
+2017-06-05 23:08:44.205851 EDT | itr #1 | Computing loss before
+2017-06-05 23:08:44.207633 EDT | itr #1 | Computing KL before
+2017-06-05 23:08:44.209264 EDT | itr #1 | Optimizing
+2017-06-05 23:08:44.209991 EDT | itr #1 | Start CG optimization: #parameters: 6879, #inputs: 1000, #subsample_inputs: 1000
+2017-06-05 23:08:44.210158 EDT | itr #1 | computing loss before
+2017-06-05 23:08:44.211937 EDT | itr #1 | performing update
+2017-06-05 23:08:44.212108 EDT | itr #1 | computing gradient
+2017-06-05 23:08:44.215327 EDT | itr #1 | gradient computed
+2017-06-05 23:08:44.215516 EDT | itr #1 | computing descent direction
+2017-06-05 23:08:44.332283 EDT | itr #1 | descent direction computed
+2017-06-05 23:08:44.334926 EDT | itr #1 | backtrack iters: 0
+2017-06-05 23:08:44.335090 EDT | itr #1 | computing loss after
+2017-06-05 23:08:44.335198 EDT | itr #1 | optimization finished
+2017-06-05 23:08:44.335308 EDT | itr #1 | Computing KL after
+2017-06-05 23:08:44.336770 EDT | itr #1 | Computing loss after
+2017-06-05 23:08:44.338342 EDT | itr #1 | Saving snapshot...
+2017-06-05 23:08:44.338501 EDT | itr #1 | Saved
+2017-06-05 23:08:44.339230 EDT | -----------------------  ---------------
+2017-06-05 23:08:44.339353 EDT | PolicyExecTime               0.599592
+2017-06-05 23:08:44.339460 EDT | EnvExecTime                 38.249
+2017-06-05 23:08:44.339562 EDT | ProcessExecTime              0.0262191
+2017-06-05 23:08:44.339662 EDT | Iteration                    1
+2017-06-05 23:08:44.339762 EDT | AverageDiscountedReturn    -99.9957
+2017-06-05 23:08:44.339862 EDT | AverageReturn            -1000
+2017-06-05 23:08:44.339961 EDT | ExplainedVariance           -0.409621
+2017-06-05 23:08:44.340061 EDT | NumTrajs                     1
+2017-06-05 23:08:44.340160 EDT | Entropy                      2.81864
+2017-06-05 23:08:44.340259 EDT | Perplexity                  16.7541
+2017-06-05 23:08:44.340358 EDT | StdReturn                    0
+2017-06-05 23:08:44.340457 EDT | MaxReturn                -1000
+2017-06-05 23:08:44.340556 EDT | MinReturn                -1000
+2017-06-05 23:08:44.340655 EDT | AveragePolicyStd             0.990564
+2017-06-05 23:08:44.340754 EDT | LossBefore                  -5.57899e-08
+2017-06-05 23:08:44.340853 EDT | LossAfter                   -0.00265702
+2017-06-05 23:08:44.340951 EDT | MeanKLBefore                 0
+2017-06-05 23:08:44.341050 EDT | MeanKL                       0.00197912
+2017-06-05 23:08:44.341148 EDT | dLoss                        0.00265697
+2017-06-05 23:08:44.341247 EDT | Time                        77.7575
+2017-06-05 23:08:44.341345 EDT | ItrTime                     39.0247
+2017-06-05 23:08:44.341457 EDT | -----------------------  ---------------
+2017-06-05 23:08:44.341633 EDT | itr #2 | Obtaining samples...
+2017-06-05 23:08:44.341747 EDT | itr #2 | Obtaining samples for iteration 2...
+2017-06-05 23:09:23.735573 EDT | itr #2 | Processing samples...
+2017-06-05 23:09:23.736652 EDT | itr #2 | fitting baseline...
+2017-06-05 23:09:23.737268 EDT | itr #2 | fitted
+2017-06-05 23:09:23.737571 EDT | itr #2 | Logging diagnostics...
+2017-06-05 23:09:23.737782 EDT | itr #2 | Optimizing policy...
+2017-06-05 23:09:23.737935 EDT | itr #2 | Computing loss before
+2017-06-05 23:09:23.739646 EDT | itr #2 | Computing KL before
+2017-06-05 23:09:23.741263 EDT | itr #2 | Optimizing
+2017-06-05 23:09:23.741900 EDT | itr #2 | Start CG optimization: #parameters: 6879, #inputs: 1000, #subsample_inputs: 1000
+2017-06-05 23:09:23.742033 EDT | itr #2 | computing loss before
+2017-06-05 23:09:23.743380 EDT | itr #2 | performing update
+2017-06-05 23:09:23.743513 EDT | itr #2 | computing gradient
+2017-06-05 23:09:23.745785 EDT | itr #2 | gradient computed
+2017-06-05 23:09:23.745922 EDT | itr #2 | computing descent direction
+2017-06-05 23:09:23.841202 EDT | itr #2 | descent direction computed
+2017-06-05 23:09:23.848716 EDT | itr #2 | backtrack iters: 3
+2017-06-05 23:09:23.848886 EDT | itr #2 | computing loss after
+2017-06-05 23:09:23.848993 EDT | itr #2 | optimization finished
+2017-06-05 23:09:23.849098 EDT | itr #2 | Computing KL after
+2017-06-05 23:09:23.850300 EDT | itr #2 | Computing loss after
+2017-06-05 23:09:23.851547 EDT | itr #2 | Saving snapshot...
+2017-06-05 23:09:23.851683 EDT | itr #2 | Saved
+2017-06-05 23:09:23.852391 EDT | -----------------------  ---------------
+2017-06-05 23:09:23.852510 EDT | PolicyExecTime               0.607054
+2017-06-05 23:09:23.852613 EDT | EnvExecTime                 38.7446
+2017-06-05 23:09:23.852712 EDT | ProcessExecTime              0.0275192
+2017-06-05 23:09:23.852809 EDT | Iteration                    2
+2017-06-05 23:09:23.852907 EDT | AverageDiscountedReturn    -99.9957
+2017-06-05 23:09:23.853004 EDT | AverageReturn            -1000
+2017-06-05 23:09:23.853101 EDT | ExplainedVariance           -0.525968
+2017-06-05 23:09:23.853198 EDT | NumTrajs                     1
+2017-06-05 23:09:23.853294 EDT | Entropy                      2.8219
+2017-06-05 23:09:23.853392 EDT | Perplexity                  16.8087
+2017-06-05 23:09:23.853489 EDT | StdReturn                    0
+2017-06-05 23:09:23.853586 EDT | MaxReturn                -1000
+2017-06-05 23:09:23.853684 EDT | MinReturn                -1000
+2017-06-05 23:09:23.853781 EDT | AveragePolicyStd             0.992167
+2017-06-05 23:09:23.853878 EDT | LossBefore                  -3.55244e-08
+2017-06-05 23:09:23.853975 EDT | LossAfter                   -0.00380016
+2017-06-05 23:09:23.854072 EDT | MeanKLBefore                 0
+2017-06-05 23:09:23.854168 EDT | MeanKL                       0.00834046
+2017-06-05 23:09:23.854265 EDT | dLoss                        0.00380013
+2017-06-05 23:09:23.854362 EDT | Time                       117.271
+2017-06-05 23:09:23.854459 EDT | ItrTime                     39.5102
+2017-06-05 23:09:23.854555 EDT | -----------------------  ---------------
+2017-06-05 23:09:23.854718 EDT | itr #3 | Obtaining samples...
+2017-06-05 23:09:23.854828 EDT | itr #3 | Obtaining samples for iteration 3...
+2017-06-05 23:10:02.969614 EDT | itr #3 | Processing samples...
+2017-06-05 23:10:02.970598 EDT | itr #3 | fitting baseline...
+2017-06-05 23:10:02.971011 EDT | itr #3 | fitted
+2017-06-05 23:10:02.971249 EDT | itr #3 | Logging diagnostics...
+2017-06-05 23:10:02.971425 EDT | itr #3 | Optimizing policy...
+2017-06-05 23:10:02.971552 EDT | itr #3 | Computing loss before
+2017-06-05 23:10:02.973017 EDT | itr #3 | Computing KL before
+2017-06-05 23:10:02.974369 EDT | itr #3 | Optimizing
+2017-06-05 23:10:02.975263 EDT | itr #3 | Start CG optimization: #parameters: 6879, #inputs: 1000, #subsample_inputs: 1000
+2017-06-05 23:10:02.975393 EDT | itr #3 | computing loss before
+2017-06-05 23:10:02.976687 EDT | itr #3 | performing update
+2017-06-05 23:10:02.976827 EDT | itr #3 | computing gradient
+2017-06-05 23:10:02.979355 EDT | itr #3 | gradient computed
+2017-06-05 23:10:02.979489 EDT | itr #3 | computing descent direction
+2017-06-05 23:10:03.071346 EDT | itr #3 | descent direction computed
+2017-06-05 23:10:03.100235 EDT | itr #3 | Line search condition violated. Rejecting the step!
+2017-06-05 23:10:03.100404 EDT | itr #3 | Violated because loss not improving
+2017-06-05 23:10:03.101338 EDT | itr #3 | backtrack iters: 14
+2017-06-05 23:10:03.101476 EDT | itr #3 | computing loss after
+2017-06-05 23:10:03.101582 EDT | itr #3 | optimization finished
+2017-06-05 23:10:03.101688 EDT | itr #3 | Computing KL after
+2017-06-05 23:10:03.102757 EDT | itr #3 | Computing loss after
+2017-06-05 23:10:03.103907 EDT | itr #3 | Saving snapshot...
+2017-06-05 23:10:03.104046 EDT | itr #3 | Saved
+2017-06-05 23:10:03.104740 EDT | -----------------------  ---------------
+2017-06-05 23:10:03.104859 EDT | PolicyExecTime               0.598039
+2017-06-05 23:10:03.104961 EDT | EnvExecTime                 38.476
+2017-06-05 23:10:03.105058 EDT | ProcessExecTime              0.026166
+2017-06-05 23:10:03.105154 EDT | Iteration                    3
+2017-06-05 23:10:03.105250 EDT | AverageDiscountedReturn    -99.9957
+2017-06-05 23:10:03.105362 EDT | AverageReturn            -1000
+2017-06-05 23:10:03.105479 EDT | ExplainedVariance            0.908289
+2017-06-05 23:10:03.105575 EDT | NumTrajs                     1
+2017-06-05 23:10:03.105672 EDT | Entropy                      2.83261
+2017-06-05 23:10:03.105768 EDT | Perplexity                  16.9898
+2017-06-05 23:10:03.105863 EDT | StdReturn                    0
+2017-06-05 23:10:03.105960 EDT | MaxReturn                -1000
+2017-06-05 23:10:03.106058 EDT | MinReturn                -1000
+2017-06-05 23:10:03.106156 EDT | AveragePolicyStd             0.997428
+2017-06-05 23:10:03.106255 EDT | LossBefore                   6.53267e-08
+2017-06-05 23:10:03.106353 EDT | LossAfter                    6.53267e-08
+2017-06-05 23:10:03.106451 EDT | MeanKLBefore                 0
+2017-06-05 23:10:03.106548 EDT | MeanKL                       0
+2017-06-05 23:10:03.106645 EDT | dLoss                        0
+2017-06-05 23:10:03.106740 EDT | Time                       156.523
+2017-06-05 23:10:03.106839 EDT | ItrTime                     39.2494
+2017-06-05 23:10:03.106935 EDT | -----------------------  ---------------
+2017-06-05 23:10:03.107144 EDT | itr #4 | Obtaining samples...
+2017-06-05 23:10:03.107257 EDT | itr #4 | Obtaining samples for iteration 4...
+2017-06-05 23:10:21.407006 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:11:01.057840 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:12:08.741711 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:13:01.365736 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:13:02.944383 EDT | observation space: Box(3,)
+2017-06-05 23:13:02.944607 EDT | action space: Box(2,)
+2017-06-05 23:13:03.095593 EDT | Training Policy on State-Based-MDP-Navigation-2d-Map0-v0
+2017-06-05 23:13:03.936139 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:13:03.954994 EDT | observation space: Box(3,)
+2017-06-05 23:13:03.955194 EDT | action space: Box(2,)
+2017-06-05 23:13:03.955750 EDT | itr #0 | Obtaining samples...
+2017-06-05 23:13:03.955914 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 23:13:39.431173 EDT | itr #0 | Processing samples...
+2017-06-05 23:13:39.431919 EDT | itr #0 | fitting baseline...
+2017-06-05 23:13:39.432488 EDT | itr #0 | fitted
+2017-06-05 23:13:39.432721 EDT | itr #0 | Logging diagnostics...
+2017-06-05 23:13:39.432894 EDT | itr #0 | Optimizing policy...
+2017-06-05 23:13:39.433025 EDT | itr #0 | Computing loss before
+2017-06-05 23:13:39.439201 EDT | itr #0 | Computing KL before
+2017-06-05 23:13:39.444615 EDT | itr #0 | Optimizing
+2017-06-05 23:13:39.447586 EDT | itr #0 | Start CG optimization: #parameters: 6779, #inputs: 1000, #subsample_inputs: 1000
+2017-06-05 23:13:39.447732 EDT | itr #0 | computing loss before
+2017-06-05 23:13:39.449012 EDT | itr #0 | performing update
+2017-06-05 23:13:39.449145 EDT | itr #0 | computing gradient
+2017-06-05 23:13:39.464858 EDT | itr #0 | gradient computed
+2017-06-05 23:13:39.465031 EDT | itr #0 | computing descent direction
+2017-06-05 23:13:39.625353 EDT | itr #0 | descent direction computed
+2017-06-05 23:13:39.637358 EDT | itr #0 | backtrack iters: 2
+2017-06-05 23:13:39.637527 EDT | itr #0 | computing loss after
+2017-06-05 23:13:39.637632 EDT | itr #0 | optimization finished
+2017-06-05 23:13:39.637735 EDT | itr #0 | Computing KL after
+2017-06-05 23:13:39.638951 EDT | itr #0 | Computing loss after
+2017-06-05 23:13:39.640273 EDT | itr #0 | Saving snapshot...
+2017-06-05 23:13:39.640426 EDT | itr #0 | Saved
+2017-06-05 23:13:39.641188 EDT | -----------------------  ---------------
+2017-06-05 23:13:39.641309 EDT | PolicyExecTime               0.60272
+2017-06-05 23:13:39.641411 EDT | EnvExecTime                 34.8322
+2017-06-05 23:13:39.641508 EDT | ProcessExecTime              0.0252168
+2017-06-05 23:13:39.641603 EDT | Iteration                    0
+2017-06-05 23:13:39.641698 EDT | AverageDiscountedReturn    -99.9957
+2017-06-05 23:13:39.641792 EDT | AverageReturn            -1000
+2017-06-05 23:13:39.641885 EDT | ExplainedVariance            2.53478e-11
+2017-06-05 23:13:39.641979 EDT | NumTrajs                     1
+2017-06-05 23:13:39.642074 EDT | Entropy                      2.83788
+2017-06-05 23:13:39.642167 EDT | Perplexity                  17.0795
+2017-06-05 23:13:39.642260 EDT | StdReturn                    0
+2017-06-05 23:13:39.642354 EDT | MaxReturn                -1000
+2017-06-05 23:13:39.642447 EDT | MinReturn                -1000
+2017-06-05 23:13:39.642541 EDT | AveragePolicyStd             1
+2017-06-05 23:13:39.642634 EDT | LossBefore                  -3.14713e-08
+2017-06-05 23:13:39.642727 EDT | LossAfter                   -0.0179874
+2017-06-05 23:13:39.642820 EDT | MeanKLBefore                 0
+2017-06-05 23:13:39.642914 EDT | MeanKL                       0.00955177
+2017-06-05 23:13:39.643007 EDT | dLoss                        0.0179874
+2017-06-05 23:13:39.643101 EDT | Time                        35.6848
+2017-06-05 23:13:39.643194 EDT | ItrTime                     35.6848
+2017-06-05 23:13:39.643288 EDT | -----------------------  ---------------
+2017-06-05 23:13:39.643484 EDT | itr #1 | Obtaining samples...
+2017-06-05 23:13:39.643594 EDT | itr #1 | Obtaining samples for iteration 1...
+2017-06-05 23:14:14.999672 EDT | itr #1 | Processing samples...
+2017-06-05 23:14:15.000502 EDT | itr #1 | fitting baseline...
+2017-06-05 23:14:15.000924 EDT | itr #1 | fitted
+2017-06-05 23:14:15.001162 EDT | itr #1 | Logging diagnostics...
+2017-06-05 23:14:15.001338 EDT | itr #1 | Optimizing policy...
+2017-06-05 23:14:15.001465 EDT | itr #1 | Computing loss before
+2017-06-05 23:14:15.002799 EDT | itr #1 | Computing KL before
+2017-06-05 23:14:15.004131 EDT | itr #1 | Optimizing
+2017-06-05 23:14:15.004718 EDT | itr #1 | Start CG optimization: #parameters: 6779, #inputs: 1000, #subsample_inputs: 1000
+2017-06-05 23:14:15.004851 EDT | itr #1 | computing loss before
+2017-06-05 23:14:15.006255 EDT | itr #1 | performing update
+2017-06-05 23:14:15.006392 EDT | itr #1 | computing gradient
+2017-06-05 23:14:15.008634 EDT | itr #1 | gradient computed
+2017-06-05 23:14:15.008769 EDT | itr #1 | computing descent direction
+2017-06-05 23:14:15.106486 EDT | itr #1 | descent direction computed
+2017-06-05 23:14:15.108593 EDT | itr #1 | backtrack iters: 0
+2017-06-05 23:14:15.108734 EDT | itr #1 | computing loss after
+2017-06-05 23:14:15.108838 EDT | itr #1 | optimization finished
+2017-06-05 23:14:15.108942 EDT | itr #1 | Computing KL after
+2017-06-05 23:14:15.110036 EDT | itr #1 | Computing loss after
+2017-06-05 23:14:15.111209 EDT | itr #1 | Saving snapshot...
+2017-06-05 23:14:15.111340 EDT | itr #1 | Saved
+2017-06-05 23:14:15.112041 EDT | -----------------------  ---------------
+2017-06-05 23:14:15.112170 EDT | PolicyExecTime               0.591595
+2017-06-05 23:14:15.112273 EDT | EnvExecTime                 34.7265
+2017-06-05 23:14:15.112370 EDT | ProcessExecTime              0.0245059
+2017-06-05 23:14:15.112465 EDT | Iteration                    1
+2017-06-05 23:14:15.112560 EDT | AverageDiscountedReturn    -99.9957
+2017-06-05 23:14:15.112654 EDT | AverageReturn            -1000
+2017-06-05 23:14:15.112748 EDT | ExplainedVariance            0.954423
+2017-06-05 23:14:15.112841 EDT | NumTrajs                     1
+2017-06-05 23:14:15.112935 EDT | Entropy                      2.83911
+2017-06-05 23:14:15.113027 EDT | Perplexity                  17.1006
+2017-06-05 23:14:15.113121 EDT | StdReturn                    0
+2017-06-05 23:14:15.113214 EDT | MaxReturn                -1000
+2017-06-05 23:14:15.113308 EDT | MinReturn                -1000
+2017-06-05 23:14:15.113401 EDT | AveragePolicyStd             1.00062
+2017-06-05 23:14:15.113495 EDT | LossBefore                   6.19888e-09
+2017-06-05 23:14:15.113588 EDT | LossAfter                   -0.00325572
+2017-06-05 23:14:15.113681 EDT | MeanKLBefore                 0
+2017-06-05 23:14:15.113774 EDT | MeanKL                       0.00152502
+2017-06-05 23:14:15.113868 EDT | dLoss                        0.00325573
+2017-06-05 23:14:15.113961 EDT | Time                        71.1557
+2017-06-05 23:14:15.114055 EDT | ItrTime                     35.468
+2017-06-05 23:14:15.114148 EDT | -----------------------  ---------------
+2017-06-05 23:14:15.114308 EDT | itr #2 | Obtaining samples...
+2017-06-05 23:14:15.114415 EDT | itr #2 | Obtaining samples for iteration 2...
+2017-06-05 23:14:40.908826 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:15:37.736320 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:15:38.929502 EDT | observation space: Box(4,)
+2017-06-05 23:15:38.929695 EDT | action space: Box(2,)
+2017-06-05 23:15:39.068479 EDT | Training Policy on State-Based-MDP-Navigation-2d-Map0-v0
+2017-06-05 23:15:39.865836 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:15:39.879040 EDT | observation space: Box(4,)
+2017-06-05 23:15:39.879229 EDT | action space: Box(2,)
+2017-06-05 23:15:39.879735 EDT | itr #0 | Obtaining samples...
+2017-06-05 23:15:39.879872 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 23:15:51.987454 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:15:53.477536 EDT | observation space: Box(16,)
+2017-06-05 23:15:53.477758 EDT | action space: Box(2,)
+2017-06-05 23:15:53.630023 EDT | Training Policy on State-Based-MDP-Navigation-2d-Map0-v0
+2017-06-05 23:15:54.445530 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 23:15:54.459313 EDT | observation space: Box(16,)
+2017-06-05 23:15:54.459503 EDT | action space: Box(2,)
+2017-06-05 23:15:54.459993 EDT | itr #0 | Obtaining samples...
+2017-06-05 23:15:54.460131 EDT | itr #0 | Obtaining samples for iteration 0...

@@ -90,7 +90,8 @@ class Environment(object):
         return self.point_distance_from_obstacles(x,y) > epsilon
 
     def range_and_bearing_to_closest_obstacle(self, x,y):
-        dist = [(self.obstacles[i].distance_to_point(x, y), i) for i in xrange(len(self.obstacles))]
+        # import pdb; pdb.set_trace()
+        dist = [(self.obstacles[i].distance_to_point(x, y), i) for i in range(len(self.obstacles))]
         distance_to_closest_obstacle, idx_closest = min(dist)
         closest_obstacle = self.obstacles[idx_closest]
         cp = closest_obstacle.closest_point_to(np.array([x,y]))
@@ -140,7 +141,7 @@ class Environment(object):
             return -1.0
 
         last_free_dist = 0
-        for e in xrange(n_evals):
+        for e in range(n_evals):
             dist = e/float(n_evals) * max_range
             c = a + dist * direction
             if not self.point_is_in_free_space(c[0], c[1], epsilon=1e-10):
@@ -151,7 +152,7 @@ class Environment(object):
 
     def winding_angle(self, path, point):
         wa = 0
-        for i in xrange(len(path)-1):
+        for i in range(len(path)-1):
             p = np.array([path[i].x, path[i].y])
             pn = np.array([path[i+1].x, path[i+1].y])
 
@@ -173,7 +174,7 @@ class Environment(object):
     def homology_vector(self, path):
         L = len(self.obstacles)
         h = np.zeros((L, 1) )
-        for i in xrange(L):
+        for i in range(L):
             h[i, 0] = self.winding_angle(path, self.obstacles[i].representative_point)
 
         return h.reshape((L,))
