@@ -19,8 +19,26 @@ for i in range(10):
         kwargs=dict(world_idx=i, destination = idx_to_goal[i])
     )
     register(
+        id='State-Based-MDP-Navigation-2d-Map%d-KnownGoalPosition-v0' % i,
+        entry_point='gym_navigation_2d.envs:StateBasedMDPNavigation2DEnv',
+        max_episode_steps=1000,
+        kwargs=dict(world_idx=i, destination = idx_to_goal[i], add_self_position_to_observation=True, add_goal_position_to_observation=True)
+    )
+    register(
         id='Limited-Range-Based-POMDP-Navigation-2d-Map%d-v0' % i,
         entry_point='gym_navigation_2d.envs:LimitedRangeBasedPOMDPNavigation2DEnv',
+        max_episode_steps=1000,
+        kwargs=dict(world_idx=i, destination = idx_to_goal[i])
+    )
+    register(
+        id='Limited-Range-Based-POMDP-Navigation-2d-Map%d-KnownPositions-v0' % i,
+        entry_point='gym_navigation_2d.envs:LimitedRangeBasedPOMDPNavigation2DEnv',
+        max_episode_steps=1000,
+        kwargs=dict(world_idx=i, destination = idx_to_goal[i], add_self_position_to_observation=True, add_goal_position_to_observation=True)
+    )
+    register(
+        id='Image-Based-Navigation-2d-Map%d-v0' % i,
+        entry_point='gym_navigation_2d.envs:ImageBasedNavigation2DEnv',
         max_episode_steps=1000,
         kwargs=dict(world_idx=i, destination = idx_to_goal[i])
     )

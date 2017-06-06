@@ -14,8 +14,9 @@ import cv2
 class ImageBasedNavigation2DEnv(StateBasedMDPNavigation2DEnv):
     metadata = {'render.modes': ['human']}
 
-    def __init__(self):
-        StateBasedMDPNavigation2DEnv.__init__(self)
+    def __init__(self, *args, **kwargs):
+        StateBasedMDPNavigation2DEnv.__init__(self, *args, **kwargs)
+        self.observation_space = Box(0., 255., self.world.image.shape)
 
     def _get_observation(self, state):
         image = self.world.image.copy()

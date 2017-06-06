@@ -5,7 +5,7 @@ from .env_generator import Environment, EnvironmentCollection
 from gym.envs.classic_control import rendering
 from gym.spaces import Box, Tuple
 
-from math import pi, cos, sin
+from math import pi, cos, sin, inf
 import numpy as np
 
 import matplotlib.cm as cmx
@@ -21,7 +21,9 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
                  initial_position = np.array([-20.0, -20.0]),
                  destination = np.array([520.0, 400.0]),
                  max_observation_range = 100.0,
-                 destination_tolerance_range=20.0):
+                 destination_tolerance_range=20.0,
+                 add_self_position_to_observation=False,
+                 add_goal_position_to_observation=False):
 
         worlds = EnvironmentCollection()
         worlds.read(worlds_pickle_filename)
@@ -34,11 +36,23 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
         self.viewer = None
         self.num_beams = 16
         self.max_speed = 5
+        self.add_self_position_to_observation = add_self_position_to_observation
+        self.add_goal_position_to_observation = add_goal_position_to_observation
         self.set_initial_position(initial_position)
         low = np.array([0.0, 0.0])
         high = np.array([self.max_speed, 2*pi])
         self.action_space = Box(low, high)#Tuple( (Box(0.0, self.max_speed, (1,)), Box(0.0, 2*pi, (1,))) )
-        self.observation_space = Box(-1.0, self.max_observation_range, (self.num_beams,))
+        low = [-1.0] * self.num_beams
+        high = [self.max_observation_range] * self.num_beams
+        if add_self_position_to_observation:
+            low.extend([-10000., -10000.]) # x and y coords
+            high.extend([10000., 10000.])
+        if add_goal_position_to_observation:
+            low.extend([-10000., -10000.]) # x and y coords
+            high.extend([10000., 10000.])
+
+
+        self.observation_space = Box(np.array(low), np.array(high))
         self.observation = []
 
     def set_initial_position(self, init_position):
@@ -56,6 +70,12 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
         ranges = [self.world.raytrace(self.state,
                                       i * delta_angle,
                                       self.max_observation_range) for i in range(self.num_beams)]
+
+        ranges = np.array(ranges)
+        if self.add_self_position_to_observation:
+            ranges = np.concatenate([ranges, self.state])
+        if self.add_goal_position_to_observation:
+            ranges = np.concatenate([ranges, self.destination])
         return ranges
 
     def _step(self, action):
@@ -172,13 +192,17 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
         return self.viewer.render(return_rgb_array = mode=='rgb_array')
 
 
-
 class StateBasedMDPNavigation2DEnv(LimitedRangeBasedPOMDPNavigation2DEnv):
     def __init__(self, *args, **kwargs):
         LimitedRangeBasedPOMDPNavigation2DEnv.__init__(self, *args, **kwargs)
-        low = np.array([-float('inf'), -float('inf'), 0.0, 0.0])
-        high = np.array([float('inf'), float('inf'), float('inf'), 2*pi])
-        self.observation_space = Box(low, high)
+        low = [-float('inf'), -float('inf'), 0.0, 0.0]
+        high = [float('inf'), float('inf'), float('inf'), 2*pi]
+
+        if add_goal_position_to_observation:
+            low.extend([-10000., -10000.]) # x and y coords
+            high.extend([10000., 10000.])
+
+        self.observation_space = Box(np.array(low), np.array(high))
 
     def _plot_observation(self, viewer, state, observation):
         pass
@@ -186,4 +210,7 @@ class StateBasedMDPNavigation2DEnv(LimitedRangeBasedPOMDPNavigation2DEnv):
     def _get_observation(self, state):
         # return state
         dist_to_closest_obstacle, absolute_angle_to_closest_obstacle = self.world.range_and_bearing_to_closest_obstacle(state[0], state[1])
-        return np.array([state[0], state[1], dist_to_closest_obstacle, absolute_angle_to_closest_obstacle])
+        obs = np.array([state[0], state[1], dist_to_closest_obstacle, absolute_angle_to_closest_obstacle])
+        if self.add_goal_position_to_observation:
+            obs = np.concatenate([obs, self.destination])
+        return obs
