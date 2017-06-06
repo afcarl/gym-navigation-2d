@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.cm as cmx
 import matplotlib.colors as colors
 
-class LimitedRangeBasedNavigation2DEnv(gym.Env):
+class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
     metadata = {'render.modes': ['human']}
 
     def __init__(self):
@@ -31,7 +31,9 @@ class LimitedRangeBasedNavigation2DEnv(gym.Env):
     def set_initial_position(self, init_position):
         self.init_position = init_position
         self.state = self.init_position.copy()
-
+        self.observation = self._get_observation(self.state)
+        
+        
     def set_destination(self, destination):
         self.destination = destination
     
@@ -74,6 +76,60 @@ class LimitedRangeBasedNavigation2DEnv(gym.Env):
     def _reset(self):
         self.state = self.init_position
 
+    def _plot_state(self, viewer, state):
+        polygon = rendering.make_circle(radius=5, res=30, filled=True)
+        state_tr = rendering.Transform(translation=(state[0], state[1]))
+        polygon.add_attr(state_tr)
+        viewer.add_onetime(polygon)
+
+
+    def _plot_observation(self, viewer, state, observation):
+        delta_angle = 2*pi/self.num_beams
+        for i in xrange(len(observation)):
+            r = observation[i]
+            if r < 0:
+                r = self.max_observation_range
+                
+            theta = i*delta_angle
+            start = (state[0], state[1])
+            end = (state[0] + r*cos(theta), state[1] + r*sin(theta))
+            
+            line = rendering.Line(start=start, end=end)
+            line.set_color(.5, 0.5, 0.5)
+            viewer.add_onetime(line)
+
+    def _append_elements_to_viewer(self, viewer,
+                                   screen_width,
+                                   screen_height,
+                                   obstacles,
+                                   destination=None,
+                                   destination_tolerance_range=None):
+        
+        viewer.set_bounds(left=-100, right=screen_width+100, bottom=-100, top=screen_height+100)
+
+        L = len(obstacles)
+        for i in xrange(L):
+
+            obs = obstacles[i]
+            for c,w,h in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights):
+                l = -w/2.0
+                r = w/2.0
+                t = h/2.0
+                b = -h/2.0
+
+                rectangle = rendering.FilledPolygon([(l,b), (l,t), (r,t), (r,b)])
+                tr = rendering.Transform(translation=(c[0], c[1]))
+                rectangle.add_attr(tr)
+                rectangle.set_color(.8,.6,.4)
+                viewer.add_geom(rectangle)
+
+        
+        if not (destination is None):
+            tr = rendering.Transform(translation=(destination[0], destination[1]))
+            polygon = rendering.make_circle(radius=destination_tolerance_range, res=30, filled=True)
+            polygon.add_attr(tr)
+            polygon.set_color(1.0, 0., 0.)
+            viewer.add_geom(polygon)
         
     def _render(self, mode='human', close=False):
 
@@ -87,58 +143,27 @@ class LimitedRangeBasedNavigation2DEnv(gym.Env):
         screen_height = (self.world.y_range[1] - self.world.y_range[0])
 
         if self.viewer is None:
-            
             self.viewer = rendering.Viewer(screen_width, screen_height)
-            self.viewer.set_bounds(left=-100, right=screen_width+100, bottom=-100, top=screen_height+100)
+            self._append_elements_to_viewer(self.viewer,
+                                            screen_width,
+                                            screen_height,
+                                            obstacles=self.world.obstacles,
+                                            destination=self.destination,
+                                            destination_tolerance_range=self.destination_tolerance_range)
+
+        self._plot_state(self.viewer, self.state)
+        self._plot_observation(self.viewer, self.state, self.observation)
             
-            L = len(self.world.obstacles)
-            for i in xrange(L):
-
-                obs = self.world.obstacles[i]
-                for c,w,h in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights):
-                    l = -w/2.0
-                    r = w/2.0
-                    t = h/2.0
-                    b = -h/2.0
-
-                    rectangle = rendering.FilledPolygon([(l,b), (l,t), (r,t), (r,b)])
-                    tr = rendering.Transform(translation=(c[0], c[1]))
-                    rectangle.add_attr(tr)
-                    rectangle.set_color(.8,.6,.4)
-                    self.viewer.add_geom(rectangle)
-                    
-            self.state_tr = rendering.Transform(translation=(self.state[0], self.state[1]))
-            polygon =  rendering.make_circle(radius=5, res=30, filled=True)
-            polygon.add_attr(self.state_tr)
-            self.viewer.add_geom(polygon)
-                    
-                    
-            tr = rendering.Transform(translation=(self.destination[0], self.destination[1]))
-            polygon = rendering.make_circle(radius=self.destination_tolerance_range, res=30, filled=True)
-            polygon.add_attr(tr)
-            polygon.set_color(1.0, 0., 0.)
-            self.viewer.add_geom(polygon)
-
-                
-                
-        self.state_tr.set_translation(self.state[0], self.state[1])
-        delta_angle = 2*pi/self.num_beams
-        
-        for i in xrange(len(self.observation)):
-            r = self.observation[i]
-            if r < 0:
-                r = self.max_observation_range
-                
-            theta = i*delta_angle
-            start = (self.state[0], self.state[1])
-            end = (self.state[0] + r*cos(theta), self.state[1] + r*sin(theta))
-            
-            line = rendering.Line(start=start, end=end)
-            line.set_color(.5, 0.5, 0.5)
-            self.viewer.add_onetime(line)
-
-            
-
-        
         return self.viewer.render(return_rgb_array = mode=='rgb_array')
         
+
+
+class StateBasedMDPNavigation2DEnv(LimitedRangeBasedPOMDPNavigation2DEnv):
+    def __init__(self):
+        LimitedRangeBasedPOMDPNavigation2DEnv.__init__(self)
+
+    def _plot_observation(self, viewer, state, observation):
+        pass
+
+    def _get_observation(self, state):
+        return state

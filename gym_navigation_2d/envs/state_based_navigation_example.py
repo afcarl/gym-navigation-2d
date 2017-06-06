@@ -5,7 +5,7 @@ from env_generator import EnvironmentGenerator, Environment, EnvironmentCollecti
 import numpy as np
 import time
 
-env = gym.make('Limited-Range-Based-POMDP-Navigation-2d-v0')
+env = gym.make('State-Based-MDP-Navigation-2d-v0')
 
 worlds_pickle_filename = './worlds_640x480.pkl'
 worlds = EnvironmentCollection()

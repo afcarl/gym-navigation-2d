@@ -55,6 +55,23 @@ class Environment(object):
         self.x_range = x_range
         self.y_range = y_range
 
+        w = x_range[1] - x_range[0]
+        h = y_range[1] - y_range[0]
+        
+        self.image = 255*np.ones((h, w, 3), dtype='uint8')
+        for obs in self.obstacles:
+            for co, wo, ho in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights):
+                r = (h-1) - co[1]
+                c = co[0]
+                min_row = max(int(r - ho/2.0), 0)
+                max_row = min(int(r + ho/2.0), h-1)
+                
+                min_col = max(int(c - wo/2.0), 0)
+                max_col = min(int(c + wo/2.0), w-1)
+                
+                self.image[min_row:max_row, min_col:max_col, :] = 0
+
+        
     def point_distance_from_obstacles(self, x, y):
         dist = [obs.distance_to_point(x, y) for obs in self.obstacles]
         return min(dist)
@@ -226,6 +243,7 @@ class EnvironmentCollection(object):
         
         eg = EnvironmentGenerator(x_range, y_range, width_range, height_range)
         for i in xrange(self.num_environments):
+            print 'Sampling environment', i
             centers, widths, heights = eg.sample_axis_aligned_rectangles(density)
             obstacles = eg.merge_rectangles_into_obstacles(centers, widths, heights, epsilon=0.2)
             self.map_collection[i] = Environment(self.x_range, self.y_range, obstacles)
