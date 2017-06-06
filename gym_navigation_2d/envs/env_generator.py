@@ -5,10 +5,12 @@ from scipy import stats
 import numpy as np
 from math import sqrt, asin, cos, sin, atan2
 import networkx as nx
-from geometry_utils import *
+from gym_navigation_2d.envs.env_utils import *
+from gym_navigation_2d.envs.geometry_utils import *
 import sys
 import pickle
 
+<<<<<<< HEAD
 class Obstacle(object):
     def __init__(self, c, w, h):
         self.rectangle_centers = [c]
@@ -180,6 +182,8 @@ class Environment(object):
         return h.reshape((L,))
 
     
+=======
+>>>>>>> test
 class EnvironmentGenerator(object):
 
     def __init__(self, x_range, y_range, width_range, height_range):
@@ -187,53 +191,53 @@ class EnvironmentGenerator(object):
         self.y_range = y_range
         self.width_range = width_range
         self.height_range = height_range
-        
+
     def sample_spatial_poisson_process(self, rate):
         xmin, xmax = self.x_range
         ymin, ymax = self.y_range
-        
+
         dx = xmax - xmin
         dy = ymax - ymin
-        
+
         N = stats.poisson( rate * dx * dy ).rvs()
         x = stats.uniform.rvs(xmin, dx, ((N, 1)) )
         y = stats.uniform.rvs(ymin, dy, ((N, 1)) )
-        
+
         centers = np.hstack((x,y))
         return centers
 
     def sample_axis_aligned_rectangles(self, density):
         wmin, wmax = self.width_range
         hmin, hmax = self.height_range
-        
+
         dw = wmax - wmin
         dh = hmax - hmin
-        
+
         centers = self.sample_spatial_poisson_process(rate=density)
         widths = stats.uniform.rvs(wmin, dw, ((centers.shape[0], 1)) )
         heights = stats.uniform.rvs(hmin, dh, ((centers.shape[0], 1)) )
-        
+
         return centers, widths, heights
-        
+
     def merge_rectangles_into_obstacles(self, centers, widths, heights, epsilon):
         """Merges rectangles defined by centers, widths, heights. Two rectangles
         with distance < epsilon are considered part of the same object."""
 
         G = nx.Graph()
-        obstacles = {i: Obstacle(centers[i, :], widths[i, 0], heights[i, 0]) for i in xrange(len(centers))}        
+        obstacles = {i: Obstacle(centers[i, :], widths[i, 0], heights[i, 0]) for i in range(len(centers))}
         G.add_nodes_from(obstacles.keys())
 
         for i in obstacles:
             for j in obstacles:
                 if i != j and obstacles[i].distance_to_obstacle(obstacles[j]) < epsilon:
                     G.add_edge(i,j)
-                    
+
         merged_obstacles = {}
         conn_components = nx.connected_components(G)
         for cc in conn_components:
             cc = list(cc)
             new_obs = obstacles[cc[0]]
-            for i in xrange(1, len(cc)):
+            for i in range(1, len(cc)):
                 new_obs.merge(obstacles[cc[i]])
 
             merged_obstacles[cc[0]] = new_obs
@@ -250,7 +254,7 @@ class EnvironmentCollection(object):
         self.height_range = []
         self.num_environments = 0
         self.map_collection = {}
-        
+
     def generate_random(self, x_range, y_range, width_range, height_range, density, num_environments):
         self.x_range = x_range
         self.y_range = y_range
@@ -258,16 +262,16 @@ class EnvironmentCollection(object):
         self.height_range = height_range
         self.num_environments = num_environments
         self.map_collection = {}
-        
+
         eg = EnvironmentGenerator(x_range, y_range, width_range, height_range)
-        for i in xrange(self.num_environments):
-            print 'Sampling environment', i
+        for i in range(self.num_environments):
+            print('Sampling environment', i)
             centers, widths, heights = eg.sample_axis_aligned_rectangles(density)
             obstacles = eg.merge_rectangles_into_obstacles(centers, widths, heights, epsilon=0.2)
             self.map_collection[i] = Environment(self.x_range, self.y_range, obstacles)
 
     def read(self, pkl_filename):
-        file_object = open(pkl_filename, 'r')
+        file_object = open(pkl_filename, 'rb')
         self.map_collection = pickle.load(file_object)
         file_object.close()
 
@@ -277,12 +281,10 @@ class EnvironmentCollection(object):
         file_object.close()
 
 
-
-
 if __name__ == "__main__":
 
     if len(sys.argv) < 2:
-        print "Usage: python env_generator.py filename_to_save.pkl"
+        print("Usage: python env_generator.py filename_to_save.pkl")
         sys.exit(0)
 
     x_range=[0, 640]
@@ -291,7 +293,7 @@ if __name__ == "__main__":
     height_range=[10,50]
 
     density = 0.0003
-    num_environments = 2
+    num_environments = 10
 
     ec = EnvironmentCollection()
     ec.generate_random(x_range, y_range, width_range, height_range, density, num_environments)

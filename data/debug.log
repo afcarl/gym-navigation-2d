@@ -1,0 +1,255 @@
+2017-06-05 21:37:46.460977 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 21:38:12.922849 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 21:38:22.777442 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 21:38:42.271113 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 21:38:57.903560 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 21:43:46.865325 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:03:08.412752 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:03:10.695970 EDT | observation space: Box(16,)
+2017-06-05 22:03:10.705726 EDT | action space: <rllab.spaces.product.Product object at 0x1182ea518>
+2017-06-05 22:08:01.985554 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:08:04.351179 EDT | observation space: Box(16,)
+2017-06-05 22:08:04.351358 EDT | action space: Box(2,)
+2017-06-05 22:08:04.495904 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:10:00.437271 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:02.776776 EDT | observation space: Box(16,)
+2017-06-05 22:10:02.776955 EDT | action space: Box(2,)
+2017-06-05 22:10:02.906455 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:10:03.678282 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:04.564187 EDT | observation space: Box(16,)
+2017-06-05 22:10:04.564389 EDT | action space: Box(2,)
+2017-06-05 22:10:04.565067 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:05.408673 EDT | observation space: Box(16,)
+2017-06-05 22:10:05.408845 EDT | action space: Box(2,)
+2017-06-05 22:10:05.409441 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:06.319214 EDT | observation space: Box(16,)
+2017-06-05 22:10:06.319389 EDT | action space: Box(2,)
+2017-06-05 22:10:06.320087 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:07.185269 EDT | observation space: Box(16,)
+2017-06-05 22:10:07.185443 EDT | action space: Box(2,)
+2017-06-05 22:10:07.186018 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:08.035799 EDT | observation space: Box(16,)
+2017-06-05 22:10:08.035972 EDT | action space: Box(2,)
+2017-06-05 22:10:08.036553 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:08.904689 EDT | observation space: Box(16,)
+2017-06-05 22:10:08.904900 EDT | action space: Box(2,)
+2017-06-05 22:10:08.905630 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:09.754883 EDT | observation space: Box(16,)
+2017-06-05 22:10:09.755083 EDT | action space: Box(2,)
+2017-06-05 22:10:09.755628 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:10.608847 EDT | observation space: Box(16,)
+2017-06-05 22:10:10.609147 EDT | action space: Box(2,)
+2017-06-05 22:10:10.609884 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:11.472652 EDT | observation space: Box(16,)
+2017-06-05 22:10:11.472828 EDT | action space: Box(2,)
+2017-06-05 22:10:11.473490 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:12.309378 EDT | observation space: Box(16,)
+2017-06-05 22:10:12.309551 EDT | action space: Box(2,)
+2017-06-05 22:10:12.310169 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:13.156525 EDT | observation space: Box(16,)
+2017-06-05 22:10:13.156699 EDT | action space: Box(2,)
+2017-06-05 22:10:13.157335 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:14.004491 EDT | observation space: Box(16,)
+2017-06-05 22:10:14.004663 EDT | action space: Box(2,)
+2017-06-05 22:10:14.005323 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:14.846942 EDT | observation space: Box(16,)
+2017-06-05 22:10:14.847143 EDT | action space: Box(2,)
+2017-06-05 22:10:14.847712 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:15.695916 EDT | observation space: Box(16,)
+2017-06-05 22:10:15.696089 EDT | action space: Box(2,)
+2017-06-05 22:10:15.696701 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:16.534214 EDT | observation space: Box(16,)
+2017-06-05 22:10:16.534423 EDT | action space: Box(2,)
+2017-06-05 22:10:16.535034 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:17.373992 EDT | observation space: Box(16,)
+2017-06-05 22:10:17.374164 EDT | action space: Box(2,)
+2017-06-05 22:10:17.374725 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:18.223602 EDT | observation space: Box(16,)
+2017-06-05 22:10:18.223780 EDT | action space: Box(2,)
+2017-06-05 22:10:18.224449 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:19.070684 EDT | observation space: Box(16,)
+2017-06-05 22:10:19.070857 EDT | action space: Box(2,)
+2017-06-05 22:10:19.071534 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:19.904750 EDT | observation space: Box(16,)
+2017-06-05 22:10:19.904927 EDT | action space: Box(2,)
+2017-06-05 22:10:19.905514 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:20.733784 EDT | observation space: Box(16,)
+2017-06-05 22:10:20.733958 EDT | action space: Box(2,)
+2017-06-05 22:10:20.734584 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:21.645738 EDT | observation space: Box(16,)
+2017-06-05 22:10:21.645927 EDT | action space: Box(2,)
+2017-06-05 22:10:21.646475 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:22.669275 EDT | observation space: Box(16,)
+2017-06-05 22:10:22.669453 EDT | action space: Box(2,)
+2017-06-05 22:10:22.669967 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:23.617894 EDT | observation space: Box(16,)
+2017-06-05 22:10:23.618073 EDT | action space: Box(2,)
+2017-06-05 22:10:23.618597 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:24.609306 EDT | observation space: Box(16,)
+2017-06-05 22:10:24.609483 EDT | action space: Box(2,)
+2017-06-05 22:10:24.609997 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:10:25.502804 EDT | observation space: Box(16,)
+2017-06-05 22:10:25.502981 EDT | action space: Box(2,)
+2017-06-05 22:10:25.503447 EDT | itr #0 | Obtaining samples...
+2017-06-05 22:10:25.503567 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 22:11:14.397592 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:22:15.231043 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:22:19.440476 EDT | observation space: Box(16,)
+2017-06-05 22:22:19.440697 EDT | action space: Box(2,)
+2017-06-05 22:22:19.564509 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:22:20.341240 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:22:22.990498 EDT | observation space: Box(16,)
+2017-06-05 22:22:22.990673 EDT | action space: Box(2,)
+2017-06-05 22:22:22.991227 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:01.870137 EDT | observation space: Box(16,)
+2017-06-05 22:23:01.870311 EDT | action space: Box(2,)
+2017-06-05 22:23:01.870872 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:06.082311 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:08.447386 EDT | observation space: Box(16,)
+2017-06-05 22:23:08.447561 EDT | action space: Box(2,)
+2017-06-05 22:23:08.575323 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:23:09.391032 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:10.345984 EDT | observation space: Box(16,)
+2017-06-05 22:23:10.346158 EDT | action space: Box(2,)
+2017-06-05 22:23:10.346701 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:11.301529 EDT | observation space: Box(16,)
+2017-06-05 22:23:11.301741 EDT | action space: Box(2,)
+2017-06-05 22:23:11.302299 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:12.266643 EDT | observation space: Box(16,)
+2017-06-05 22:23:12.266815 EDT | action space: Box(2,)
+2017-06-05 22:23:12.267516 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:13.242274 EDT | observation space: Box(16,)
+2017-06-05 22:23:13.242448 EDT | action space: Box(2,)
+2017-06-05 22:23:13.243056 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:14.195367 EDT | observation space: Box(16,)
+2017-06-05 22:23:14.195541 EDT | action space: Box(2,)
+2017-06-05 22:23:14.196093 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:15.150426 EDT | observation space: Box(16,)
+2017-06-05 22:23:15.150601 EDT | action space: Box(2,)
+2017-06-05 22:23:15.151158 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:16.101847 EDT | observation space: Box(16,)
+2017-06-05 22:23:16.102019 EDT | action space: Box(2,)
+2017-06-05 22:23:16.102645 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:17.039292 EDT | observation space: Box(16,)
+2017-06-05 22:23:17.039465 EDT | action space: Box(2,)
+2017-06-05 22:23:17.040006 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:17.986938 EDT | observation space: Box(16,)
+2017-06-05 22:23:17.987115 EDT | action space: Box(2,)
+2017-06-05 22:23:17.987623 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:18.922631 EDT | observation space: Box(16,)
+2017-06-05 22:23:18.922804 EDT | action space: Box(2,)
+2017-06-05 22:23:18.923398 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:19.863093 EDT | observation space: Box(16,)
+2017-06-05 22:23:19.863263 EDT | action space: Box(2,)
+2017-06-05 22:23:19.863906 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:20.792693 EDT | observation space: Box(16,)
+2017-06-05 22:23:20.792865 EDT | action space: Box(2,)
+2017-06-05 22:23:20.793525 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:21.735055 EDT | observation space: Box(16,)
+2017-06-05 22:23:21.735228 EDT | action space: Box(2,)
+2017-06-05 22:23:21.735899 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:22.666974 EDT | observation space: Box(16,)
+2017-06-05 22:23:22.667147 EDT | action space: Box(2,)
+2017-06-05 22:23:22.667741 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:23.602369 EDT | observation space: Box(16,)
+2017-06-05 22:23:23.602541 EDT | action space: Box(2,)
+2017-06-05 22:23:23.603230 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:24.532570 EDT | observation space: Box(16,)
+2017-06-05 22:23:24.532739 EDT | action space: Box(2,)
+2017-06-05 22:23:24.533415 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:25.470435 EDT | observation space: Box(16,)
+2017-06-05 22:23:25.470642 EDT | action space: Box(2,)
+2017-06-05 22:23:25.471327 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:26.525490 EDT | observation space: Box(16,)
+2017-06-05 22:23:26.525674 EDT | action space: Box(2,)
+2017-06-05 22:23:26.528818 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:27.639159 EDT | observation space: Box(16,)
+2017-06-05 22:23:27.639334 EDT | action space: Box(2,)
+2017-06-05 22:23:27.639839 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:28.624342 EDT | observation space: Box(16,)
+2017-06-05 22:23:28.624519 EDT | action space: Box(2,)
+2017-06-05 22:23:28.625047 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:29.648154 EDT | observation space: Box(16,)
+2017-06-05 22:23:29.648385 EDT | action space: Box(2,)
+2017-06-05 22:23:29.649072 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:30.683344 EDT | observation space: Box(16,)
+2017-06-05 22:23:30.683520 EDT | action space: Box(2,)
+2017-06-05 22:23:30.684172 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:31.683042 EDT | observation space: Box(16,)
+2017-06-05 22:23:31.683263 EDT | action space: Box(2,)
+2017-06-05 22:23:31.683952 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:32.715053 EDT | observation space: Box(16,)
+2017-06-05 22:23:32.715395 EDT | action space: Box(2,)
+2017-06-05 22:23:32.715904 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:23:33.724919 EDT | observation space: Box(16,)
+2017-06-05 22:23:33.725100 EDT | action space: Box(2,)
+2017-06-05 22:23:33.725565 EDT | itr #0 | Obtaining samples...
+2017-06-05 22:23:33.725700 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 22:24:39.458918 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:41.940155 EDT | observation space: Box(16,)
+2017-06-05 22:24:41.940358 EDT | action space: Box(2,)
+2017-06-05 22:24:42.063722 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:24:42.827228 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:43.773846 EDT | observation space: Box(16,)
+2017-06-05 22:24:43.774027 EDT | action space: Box(2,)
+2017-06-05 22:24:43.774564 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:44.705554 EDT | observation space: Box(16,)
+2017-06-05 22:24:44.705729 EDT | action space: Box(2,)
+2017-06-05 22:24:44.706282 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:45.620917 EDT | observation space: Box(16,)
+2017-06-05 22:24:45.621094 EDT | action space: Box(2,)
+2017-06-05 22:24:45.621620 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:46.616155 EDT | observation space: Box(16,)
+2017-06-05 22:24:46.616340 EDT | action space: Box(2,)
+2017-06-05 22:24:46.616876 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:47.504138 EDT | observation space: Box(16,)
+2017-06-05 22:24:47.504310 EDT | action space: Box(2,)
+2017-06-05 22:24:47.504816 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:48.481615 EDT | observation space: Box(16,)
+2017-06-05 22:24:48.481791 EDT | action space: Box(2,)
+2017-06-05 22:24:48.482326 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:56.807599 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:24:59.112866 EDT | observation space: Box(16,)
+2017-06-05 22:24:59.113086 EDT | action space: Box(2,)
+2017-06-05 22:24:59.242851 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:25:00.049653 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:25:00.989212 EDT | observation space: Box(16,)
+2017-06-05 22:25:00.989400 EDT | action space: Box(2,)
+2017-06-05 22:25:00.989933 EDT | itr #0 | Obtaining samples...
+2017-06-05 22:25:00.990054 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 22:25:23.571399 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:25:25.937072 EDT | observation space: Box(16,)
+2017-06-05 22:25:25.937257 EDT | action space: Box(2,)
+2017-06-05 22:25:26.073657 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:25:26.955248 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:25:27.854854 EDT | observation space: Box(16,)
+2017-06-05 22:25:27.855029 EDT | action space: Box(2,)
+2017-06-05 22:25:27.855582 EDT | itr #0 | Obtaining samples...
+2017-06-05 22:25:27.855699 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 22:26:30.735778 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:26:32.734531 EDT | observation space: Box(16,)
+2017-06-05 22:26:32.734710 EDT | action space: Box(2,)
+2017-06-05 22:26:32.862320 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:26:33.636016 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:26:34.527160 EDT | observation space: Box(16,)
+2017-06-05 22:26:34.527332 EDT | action space: Box(2,)
+2017-06-05 22:26:34.527920 EDT | itr #0 | Obtaining samples...
+2017-06-05 22:26:34.528037 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 22:27:25.045033 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:27:27.347992 EDT | observation space: Box(16,)
+2017-06-05 22:27:27.348175 EDT | action space: Box(2,)
+2017-06-05 22:27:27.483832 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:27:28.290224 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:27:29.167403 EDT | observation space: Box(16,)
+2017-06-05 22:27:29.167578 EDT | action space: Box(2,)
+2017-06-05 22:27:29.168197 EDT | itr #0 | Obtaining samples...
+2017-06-05 22:27:29.168362 EDT | itr #0 | Obtaining samples for iteration 0...
+2017-06-05 22:36:32.810002 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:36:35.167191 EDT | observation space: Box(16,)
+2017-06-05 22:36:35.167370 EDT | action space: Box(2,)
+2017-06-05 22:36:35.299758 EDT | Training Policy on Limited-Range-Based-POMDP-Navigation-2d-Map0-v0
+2017-06-05 22:36:36.106669 EDT | Warning: skipping Gym environment monitoring since snapshot_dir not configured.
+2017-06-05 22:36:37.001341 EDT | observation space: Box(16,)
+2017-06-05 22:36:37.001514 EDT | action space: Box(2,)
+2017-06-05 22:36:37.001944 EDT | itr #0 | Obtaining samples...
+2017-06-05 22:36:37.002062 EDT | itr #0 | Obtaining samples for iteration 0...

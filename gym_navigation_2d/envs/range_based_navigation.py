@@ -1,7 +1,7 @@
 import gym
 from gym import error, spaces, utils
 from gym.utils import seeding
-from env_generator import Environment, EnvironmentCollection
+from .env_generator import Environment, EnvironmentCollection
 from gym.envs.classic_control import rendering
 from gym.spaces import Box, Tuple
 
@@ -10,72 +10,86 @@ import numpy as np
 
 import matplotlib.cm as cmx
 import matplotlib.colors as colors
+import os
 
 class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
     metadata = {'render.modes': ['human']}
 
-    def __init__(self):
-        self.world = None
-        self.destination = None
-        self.state = np.array([0.0, 0.0])
-        self.init_position = self.state.copy()
-        self.max_observation_range = 10
-        self.destination_tolerance_range = 5
+    def __init__(self,
+                 worlds_pickle_filename=os.path.join(os.path.dirname(__file__), "assets", "worlds_640x480_v1.pkl"),
+                 world_idx=0,
+                 initial_position = np.array([-20.0, -20.0]),
+                 destination = np.array([520.0, 400.0]),
+                 max_observation_range = 100.0,
+                 destination_tolerance_range=20.0):
+
+        worlds = EnvironmentCollection()
+        worlds.read(worlds_pickle_filename)
+
+        self.world = worlds.map_collection[world_idx]
+        self.set_destination(destination)
+
+        self.max_observation_range = max_observation_range
+        self.destination_tolerance_range = destination_tolerance_range
         self.viewer = None
         self.num_beams = 16
         self.max_speed = 5
-        self.action_space = Tuple( (Box(0.0, self.max_speed, (1,)), Box(0.0, 2*pi, (1,))) ) 
-        self.observation_space = Box(-1.0, self.max_observation_range, (self.num_beams,)) 
+        self.set_initial_position(initial_position)
+        low = np.array([0.0, 0.0])
+        high = np.array([self.max_speed, 2*pi])
+        self.action_space = Box(low, high)#Tuple( (Box(0.0, self.max_speed, (1,)), Box(0.0, 2*pi, (1,))) )
+        self.observation_space = Box(-1.0, self.max_observation_range, (self.num_beams,))
         self.observation = []
-        
+
     def set_initial_position(self, init_position):
         assert not (self.destination is None)
         self.init_position = init_position
         self.state = self.init_position.copy()
         self.observation = self._get_observation(self.state)
-        
-        
+
+
     def set_destination(self, destination):
         self.destination = destination
-    
+
     def _get_observation(self, state):
         delta_angle = 2*pi/self.num_beams
         ranges = [self.world.raytrace(self.state,
                                       i * delta_angle,
-                                      self.max_observation_range) for i in xrange(self.num_beams)]
+                                      self.max_observation_range) for i in range(self.num_beams)]
         return ranges
-        
+
     def _step(self, action):
         old_state = self.state
-        v = action[0][0]
-        theta = action[1][0]
+        v = action[0]
+        theta = action[1]
         dx = v*cos(theta)
         dy = v*sin(theta)
-        
+
         self.state += np.array([dx, dy])
-        
-        reward = 0
+
+        reward = -1 # minus 1 for every timestep you're not in the goal
         done = False
         info = {}
 
         if np.linalg.norm(self.destination - self.state) < self.destination_tolerance_range:
-            reward = 1
+            reward = 20 # for reaching the goal
             done = True
-            
+
         if not self.world.point_is_in_free_space(self.state[0], self.state[1], epsilon=0.25):
-            reward = -1
+            reward = -5 # for hitting an obstacle
 
         if not self.world.segment_is_in_free_space(old_state[0], old_state[1],
                                                    self.state[0], self.state[1],
                                                    epsilon=0.25):
-            reward = -1
-            
+            reward = -5 # for hitting an obstacle
+
         self.observation = self._get_observation(self.state)
         return self.observation, reward, done, info
 
-    
+
     def _reset(self):
         self.state = self.init_position
+        return self._get_observation(self.state)
 
     def _plot_state(self, viewer, state):
         polygon = rendering.make_circle(radius=5, res=30, filled=True)
@@ -86,15 +100,15 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
 
     def _plot_observation(self, viewer, state, observation):
         delta_angle = 2*pi/self.num_beams
-        for i in xrange(len(observation)):
+        for i in range(len(observation)):
             r = observation[i]
             if r < 0:
                 r = self.max_observation_range
-                
+
             theta = i*delta_angle
             start = (state[0], state[1])
             end = (state[0] + r*cos(theta), state[1] + r*sin(theta))
-            
+
             line = rendering.Line(start=start, end=end)
             line.set_color(.5, 0.5, 0.5)
             viewer.add_onetime(line)
@@ -105,11 +119,11 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
                                    obstacles,
                                    destination=None,
                                    destination_tolerance_range=None):
-        
+
         viewer.set_bounds(left=-100, right=screen_width+100, bottom=-100, top=screen_height+100)
 
         L = len(obstacles)
-        for i in xrange(L):
+        for i in range(L):
 
             obs = obstacles[i]
             for c,w,h in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights):
@@ -124,14 +138,14 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
                 rectangle.set_color(.8,.6,.4)
                 viewer.add_geom(rectangle)
 
-        
+
         if not (destination is None):
             tr = rendering.Transform(translation=(destination[0], destination[1]))
             polygon = rendering.make_circle(radius=destination_tolerance_range, res=30, filled=True)
             polygon.add_attr(tr)
             polygon.set_color(1.0, 0., 0.)
             viewer.add_geom(polygon)
-        
+
     def _render(self, mode='human', close=False):
 
         if close:
@@ -154,14 +168,14 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
 
         self._plot_state(self.viewer, self.state)
         self._plot_observation(self.viewer, self.state, self.observation)
-            
+
         return self.viewer.render(return_rgb_array = mode=='rgb_array')
-        
+
 
 
 class StateBasedMDPNavigation2DEnv(LimitedRangeBasedPOMDPNavigation2DEnv):
-    def __init__(self):
-        LimitedRangeBasedPOMDPNavigation2DEnv.__init__(self)
+    def __init__(self, *args, **kwargs):
+        LimitedRangeBasedPOMDPNavigation2DEnv.__init__(self, *args, **kwargs)
         low = np.array([-float('inf'), 0.0, 0.0])
         high = np.array([float('inf'), float('inf'), 2*pi])
         self.observation_space = Box(low, high)
