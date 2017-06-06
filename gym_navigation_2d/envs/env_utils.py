@@ -1,7 +1,7 @@
 import scipy
 from scipy import stats
 import numpy as np
-from math import sqrt, asin, cos, sin, atan2
+from math import sqrt, asin, cos, sin, atan2, ceil
 import networkx as nx
 from gym_navigation_2d.envs.env_utils import *
 from gym_navigation_2d.envs.geometry_utils import *
@@ -87,10 +87,14 @@ class Environment(object):
         return min(dist)
 
     def point_is_in_free_space(self, x, y, epsilon=0.25):
-        return self.point_distance_from_obstacles(x,y) > epsilon
-
+        row = (self.image.shape[0] - 1) - int(y)
+        col = int(x)
+        if (row >=0 and row < self.image.shape[0] and col >= 0 and col < self.image.shape[1]):
+            return (self.image[row, col, :] == (255, 255, 255)).all()
+        else:
+            return True
+        
     def range_and_bearing_to_closest_obstacle(self, x,y):
-        # import pdb; pdb.set_trace()
         dist = [(self.obstacles[i].distance_to_point(x, y), i) for i in range(len(self.obstacles))]
         distance_to_closest_obstacle, idx_closest = min(dist)
         closest_obstacle = self.obstacles[idx_closest]
@@ -99,20 +103,12 @@ class Environment(object):
         return distance_to_closest_obstacle, bearing_to_closest_obstacle
 
     def segment_is_in_free_space(self, x1,y1, x2,y2, epsilon=0.5):
-
-        if not (self.point_is_in_free_space(x1, y1, epsilon/2.0) and self.point_is_in_free_space(x2, y2, epsilon/2.0)):
-            return False
-
-        a = np.array([x1, y1])
-        b = np.array([x2, y2])
-
-        return not any([segments_intersect(a, b, s, t) for obs in self.obstacles \
-                        for c,w,h in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights) \
-                        for s,t in rectangle_edges( np.array([c[0] + (w + epsilon)/2.0, c[1] + (h + epsilon)/2.0]), \
-                                                    np.array([c[0] + (w + epsilon)/2.0, c[1] - (h + epsilon)/2.0]), \
-                                                    np.array([c[0] - (w + epsilon)/2.0, c[1] - (h + epsilon)/2.0]), \
-                                                    np.array([c[0] - (w + epsilon)/2.0, c[1] + (h + epsilon)/2.0]) ) ])
-
+        # Note: this is assuming that 1px = 1m
+        a = np.array([x1,y1])
+        b = np.array([x2,y2])
+        L = np.linalg.norm(b-a)
+        return all([self.point_is_in_free_space(a[0] + i/L*(b[0]-a[0]), a[1] + i/L*(b[1]-a[1])) for i in range(ceil(L))])
+        
 
     def segment_distance_from_obstacles(self, x1, y1, x2, y2):
 
@@ -126,7 +122,6 @@ class Environment(object):
                 for c,w,h in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights) for p in rectangle_vertices(c,w,h)]
 
         return min(dist)
-
 
     def raytrace(self, p, theta, max_range, n_evals=50):
         """TODO: implement a less naive collision algo than this"""

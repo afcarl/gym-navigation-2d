@@ -8,8 +8,6 @@ from gym.spaces import Box, Tuple
 from math import pi, cos, sin, inf
 import numpy as np
 
-import matplotlib.cm as cmx
-import matplotlib.colors as colors
 import os
 
 class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
@@ -198,7 +196,7 @@ class StateBasedMDPNavigation2DEnv(LimitedRangeBasedPOMDPNavigation2DEnv):
         low = [-float('inf'), -float('inf'), 0.0, 0.0]
         high = [float('inf'), float('inf'), float('inf'), 2*pi]
 
-        if add_goal_position_to_observation:
+        if self.add_goal_position_to_observation:
             low.extend([-10000., -10000.]) # x and y coords
             high.extend([10000., 10000.])
 
