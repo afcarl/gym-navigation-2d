@@ -4,20 +4,22 @@ import numpy as np
 from math import sqrt
 from itertools import product
 
-def point_to_segment_distance(p, a, b):
+def closest_point_on_segment(p, a, b):
     lsqr = (a[0]-b[0])**2 + (a[1]-b[1])**2
     pa = p-a
     ba = b-a
 
     if (lsqr < 1e-15):
-        return np.linalg.norm(pa)
+        return a
 
     t_opt = pa.dot(ba) / lsqr
     t_opt = max(min(t_opt, 1), 0)
     cp = a + t_opt * (b-a)
-    
-    return np.linalg.norm(cp - p) 
+    return cp
 
+def point_to_segment_distance(p, a, b):
+    cp = closest_point_on_segment(p, a, b)
+    return np.linalg.norm(cp - p) 
 
 def point_to_rectangle_distance(p, ca, wa, ha):
 

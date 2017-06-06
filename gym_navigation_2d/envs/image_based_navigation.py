@@ -23,7 +23,6 @@ class ImageBasedNavigation2DEnv(StateBasedMDPNavigation2DEnv):
         state_col = int(self.state[0])
         state_row = (self.world.image.shape[0] - 1) - int(self.state[1])
 
-        print self.destination
         dest_col = int(self.destination[0])
         dest_row = (self.world.image.shape[0] - 1) - int(self.destination[1])
         

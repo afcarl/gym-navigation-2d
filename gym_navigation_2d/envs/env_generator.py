@@ -3,7 +3,7 @@
 import scipy
 from scipy import stats
 import numpy as np
-from math import sqrt, asin, cos, sin
+from math import sqrt, asin, cos, sin, atan2
 import networkx as nx
 from geometry_utils import *
 import sys
@@ -47,8 +47,18 @@ class Obstacle(object):
         dist = [self.distance_to_rectangle(ca, wa, ha) for ca,wa,ha in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights)]
         return min(dist)
 
-
-    
+    def closest_point_to(self, p):
+        closest_points_to_segments = [closest_point_on_segment(p, s, t) for c,w,h in zip(self.rectangle_centers, self.rectangle_widths, self.rectangle_heights) \
+                                      for s,t in rectangle_edges( np.array([c[0] + w/2.0, c[1] + h/2.0]), \
+                                                                  np.array([c[0] + w/2.0, c[1] - h/2.0]), \
+                                                                  np.array([c[0] - w/2.0, c[1] - h/2.0]), \
+                                                                  np.array([c[0] - w/2.0, c[1] + h/2.0]) )]
+        
+        distances = [np.linalg.norm(p - cp) for cp in closest_points_to_segments]
+        idx = np.argmin(distances)
+        
+        return closest_points_to_segments[idx]
+        
 class Environment(object):
     def __init__(self, x_range, y_range, obstacles):
         self.obstacles = obstacles.values()
@@ -78,7 +88,15 @@ class Environment(object):
     
     def point_is_in_free_space(self, x, y, epsilon=0.25):
         return self.point_distance_from_obstacles(x,y) > epsilon
-    
+
+    def range_and_bearing_to_closest_obstacle(self, x,y):
+        dist = [(self.obstacles[i].distance_to_point(x, y), i) for i in xrange(len(self.obstacles))]
+        distance_to_closest_obstacle, idx_closest = min(dist)
+        closest_obstacle = self.obstacles[idx_closest]
+        cp = closest_obstacle.closest_point_to(np.array([x,y]))
+        bearing_to_closest_obstacle = atan2(cp[1]-y, cp[0]-x)
+        return distance_to_closest_obstacle, bearing_to_closest_obstacle
+        
     def segment_is_in_free_space(self, x1,y1, x2,y2, epsilon=0.5):
         
         if not (self.point_is_in_free_space(x1, y1, epsilon/2.0) and self.point_is_in_free_space(x2, y2, epsilon/2.0)):
