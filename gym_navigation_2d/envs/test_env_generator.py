@@ -4,6 +4,7 @@ from env_generator import *
 from geometry_utils import *
 
 from math import sqrt
+import cv2
 
 class TestDistanceMethods(unittest.TestCase):
 
@@ -310,7 +311,40 @@ class TestDistanceMethods(unittest.TestCase):
         self.assertEqual(len(obstacles), 3)
 
 
+    def test_point_in_free_space(self):
+        centers = np.array([[0,0]])
+        widths = np.array([10]).reshape((len(centers),1))
+        heights = np.array([10]).reshape((len(centers),1))
         
-    
+        eg = EnvironmentGenerator([0, 50], [0, 50], [1,5], [1, 5])
+        obstacles = eg.merge_rectangles_into_obstacles(centers, widths, heights, epsilon=0.2)
+        
+        env = Environment(eg.x_range, eg.y_range, obstacles)
+
+        self.assertTrue(env.point_is_in_free_space(6,6))
+        self.assertTrue(env.point_is_in_free_space(5,5))
+
+        self.assertFalse(env.point_is_in_free_space(4,4))
+        self.assertFalse(env.point_is_in_free_space(0.5,0.5))
+
+        self.assertTrue(env.point_is_in_free_space(-4,-4))
+        self.assertTrue(env.point_is_in_free_space(-5,-5))
+        self.assertTrue(env.point_is_in_free_space(-6,-6))
+
+
+    def test_segment_in_free_space(self):
+        centers = np.array([[0,0]])
+        widths = np.array([10]).reshape((len(centers),1))
+        heights = np.array([10]).reshape((len(centers),1))
+        
+        eg = EnvironmentGenerator([0, 50], [0, 50], [1,5], [1, 5])
+        obstacles = eg.merge_rectangles_into_obstacles(centers, widths, heights, epsilon=0.2)
+        
+        env = Environment(eg.x_range, eg.y_range, obstacles)
+        
+        self.assertFalse(env.segment_is_in_free_space(-5, 1, 5, 1))
+        self.assertTrue(env.segment_is_in_free_space(-5,-4, 5, -4))
+        
+        
 if __name__ == '__main__':
     unittest.main()

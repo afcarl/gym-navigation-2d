@@ -71,28 +71,31 @@ class Environment(object):
         self.image = 255*np.ones((h, w, 3), dtype='uint8')
         for obs in self.obstacles:
             for co, wo, ho in zip(obs.rectangle_centers, obs.rectangle_widths, obs.rectangle_heights):
-                r = (h-1) - co[1]
+                r = co[1]
                 c = co[0]
                 min_row = max(int(r - ho/2.0), 0)
                 max_row = min(int(r + ho/2.0), h-1)
-
+                
                 min_col = max(int(c - wo/2.0), 0)
                 max_col = min(int(c + wo/2.0), w-1)
 
                 self.image[min_row:max_row, min_col:max_col, :] = (204, 153, 102)
 
-
+                
     def point_distance_from_obstacles(self, x, y):
         dist = [obs.distance_to_point(x, y) for obs in self.obstacles]
         return min(dist)
 
+    
     def point_is_in_free_space(self, x, y, epsilon=0.25):
-        row = (self.image.shape[0] - 1) - int(y)
+        row = int(y)
         col = int(x)
+
         if (row >=0 and row < self.image.shape[0] and col >= 0 and col < self.image.shape[1]):
             return (self.image[row, col, :] == (255, 255, 255)).all()
         else:
             return True
+
         
     def range_and_bearing_to_closest_obstacle(self, x,y):
         dist = [(self.obstacles[i].distance_to_point(x, y), i) for i in range(len(self.obstacles))]
@@ -102,6 +105,7 @@ class Environment(object):
         bearing_to_closest_obstacle = atan2(cp[1]-y, cp[0]-x)
         return distance_to_closest_obstacle, bearing_to_closest_obstacle
 
+    
     def segment_is_in_free_space(self, x1,y1, x2,y2, epsilon=0.5):
         # Note: this is assuming that 1px = 1m
         a = np.array([x1,y1])
