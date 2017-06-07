@@ -5,17 +5,7 @@ from env_generator import EnvironmentGenerator, Environment, EnvironmentCollecti
 import numpy as np
 import time
 
-env = gym.make('Limited-Range-Based-POMDP-Navigation-2d-Map1-v0')
-#
-# worlds_pickle_filename = './worlds_640x480.pkl'
-# worlds = EnvironmentCollection()
-# worlds.read(worlds_pickle_filename)
-#
-# env.world = worlds.map_collection[0]
-# env.set_initial_position(np.array([-20.0, -20.0]))
-# env.set_destination(np.array([520.0, 400.0]))
-# env.max_observation_range = 100.0
-# env.destination_tolerance_range = 20.0
+env = gym.make('Limited-Range-Based-POMDP-Navigation-2d-Map1-Goal1-v0')
 
 observation = env.reset()
 dt1 = []

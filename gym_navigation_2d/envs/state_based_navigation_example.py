@@ -6,12 +6,12 @@ import numpy as np
 import time
 import timeit
 
-env = gym.make('State-Based-MDP-Navigation-2d-Map9-v0')
+env = gym.make('State-Based-MDP-Navigation-2d-Map0-Goal2-v0')
 
 observation = env.reset()
 dt1 = []
 dt2 = []
-for t in range(100):
+for t in range(300):
     env.render()
 
     start = time.time()
