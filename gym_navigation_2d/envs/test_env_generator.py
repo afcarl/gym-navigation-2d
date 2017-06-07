@@ -5,6 +5,7 @@ from geometry_utils import *
 
 from math import sqrt
 import cv2
+import os
 
 class TestDistanceMethods(unittest.TestCase):
 
@@ -319,7 +320,7 @@ class TestDistanceMethods(unittest.TestCase):
         eg = EnvironmentGenerator([0, 50], [0, 50], [1,5], [1, 5])
         obstacles = eg.merge_rectangles_into_obstacles(centers, widths, heights, epsilon=0.2)
         
-        env = Environment(eg.x_range, eg.y_range, obstacles)
+        env = Environment(eg.x_range, eg.y_range, list(obstacles.values()))
 
         self.assertTrue(env.point_is_in_free_space(6,6))
         self.assertTrue(env.point_is_in_free_space(5,5))
@@ -340,11 +341,50 @@ class TestDistanceMethods(unittest.TestCase):
         eg = EnvironmentGenerator([0, 50], [0, 50], [1,5], [1, 5])
         obstacles = eg.merge_rectangles_into_obstacles(centers, widths, heights, epsilon=0.2)
         
-        env = Environment(eg.x_range, eg.y_range, obstacles)
+        env = Environment(eg.x_range, eg.y_range, list(obstacles.values()))
         
         self.assertFalse(env.segment_is_in_free_space(-5, 1, 5, 1))
         self.assertTrue(env.segment_is_in_free_space(-5,-4, 5, -4))
+
+
+    def test_save_read(self):
+        centers = np.array([[4,4], [10,10]])
+        widths = np.array([1,1]).reshape((len(centers),1))
+        heights = np.array([3,3]).reshape((len(centers),1))
         
+        eg = EnvironmentGenerator([0, 100], [0, 100], [1,5], [1, 5])
+        obstacles = eg.merge_rectangles_into_obstacles(centers, widths, heights, epsilon=0.2)
+        
+        env = Environment(eg.x_range, eg.y_range, list(obstacles.values()))
+
+        centers2 = np.array([[5,5], [10,10]])
+        widths2 = np.array([1,1]).reshape((len(centers2),1))
+        heights2 = np.array([2,2]).reshape((len(centers2),1))
+        
+        eg2 = EnvironmentGenerator([0, 100], [0, 100], [1,5], [1, 5])
+        obstacles2 = eg2.merge_rectangles_into_obstacles(centers2, widths2, heights2, epsilon=0.2)
+        
+        env2 = Environment(eg2.x_range, eg2.y_range, list(obstacles2.values()))
+
+        ec = EnvironmentCollection()
+        ec.x_range = [0, 100]
+        ec.y_range = [0, 100]
+        ec.width_range = [1,5]
+        ec.height_range = [1,5]
+        ec.num_environments = 0
+        ec.map_collection = {0: env, 1: env2}
+
+        ec.save('./temp.pkl')
+
+        ec2 = EnvironmentCollection()
+        ec2.read('./temp.pkl')
+
+        self.assertEqual(ec2.x_range, ec.x_range)
+        self.assertEqual(ec2.y_range, ec.y_range)
+        self.assertEqual(ec2.map_collection, ec.map_collection)
+
+        os.remove('./temp.pkl')
+    
         
 if __name__ == '__main__':
     unittest.main()

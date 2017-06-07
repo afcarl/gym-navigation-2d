@@ -5,7 +5,7 @@ from .env_generator import Environment, EnvironmentCollection
 from gym.envs.classic_control import rendering
 from gym.spaces import Box, Tuple
 
-from math import pi, cos, sin, inf
+from math import pi, cos, sin
 import numpy as np
 
 import os
@@ -14,7 +14,7 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
     metadata = {'render.modes': ['human']}
 
     def __init__(self,
-                 worlds_pickle_filename=os.path.join(os.path.dirname(__file__), "assets", "worlds_640x480_v1.pkl"),
+                 worlds_pickle_filename=os.path.join(os.path.dirname(__file__), "assets", "worlds_640x480_v2.pkl"),
                  world_idx=0,
                  initial_position = np.array([-20.0, -20.0]),
                  destination = np.array([520.0, 400.0]),

@@ -11,12 +11,33 @@ import pickle
 
 class Obstacle(object):
     def __init__(self, c, w, h):
-        self.rectangle_centers = [c]
-        self.rectangle_widths = [w]
-        self.rectangle_heights = [h]
-        self.lowest_point = np.array([c[0], c[1] - h/2.0])
-        self.representative_point = np.array([c[0], c[1]])
 
+        if type(c) == type([]):
+            self.rectangle_centers = c
+            self.rectangle_widths = w
+            self.rectangle_heights = h
+            
+            assert(c)
+            
+            self.lowest_point = np.array([ c[0][0], c[0][1] - h[0]/2.0])
+            self.representative_point = c[0].copy()
+
+            for ca, wa, ha in zip(c, w, h):
+                if (self.lowest_point[1] > ca[1] - ha/2.0):
+                    self.lowest_point = np.array([ca[0], ca[1] - ha/2.0])
+            
+        else:
+            self.rectangle_centers = [c]
+            self.rectangle_widths = [w]
+            self.rectangle_heights = [h]
+            self.lowest_point = np.array([c[0], c[1] - h/2.0])
+            self.representative_point = c.copy()
+
+    def __eq__(self, other):
+        return all([ (sc == oc).all() for sc, oc in zip(self.rectangle_centers, other.rectangle_centers) ])  and \
+            all([ (sw == ow).all() for sw, ow in zip(self.rectangle_widths, other.rectangle_widths) ]) and \
+            all([ (sh == oh).all() for sh, oh in zip(self.rectangle_heights, other.rectangle_heights) ])
+    
     def append(self, ca, wa, ha):
         self.rectangle_centers.append(ca)
         self.rectangle_widths.append(wa)
@@ -61,7 +82,7 @@ class Obstacle(object):
 
 class Environment(object):
     def __init__(self, x_range, y_range, obstacles):
-        self.obstacles = obstacles.values()
+        self.obstacles = obstacles
         self.x_range = x_range
         self.y_range = y_range
 
@@ -81,6 +102,9 @@ class Environment(object):
 
                 self.image[min_row:max_row, min_col:max_col, :] = (204, 153, 102)
 
+
+    def __eq__(self, other):
+        return self.obstacles == other.obstacles and self.x_range == other.x_range and self.y_range == other.y_range
                 
     def point_distance_from_obstacles(self, x, y):
         dist = [obs.distance_to_point(x, y) for obs in self.obstacles]
