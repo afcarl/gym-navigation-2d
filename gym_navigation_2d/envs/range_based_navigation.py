@@ -77,7 +77,7 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
         return ranges
 
     def _step(self, action):
-        old_state = self.state
+        old_state = self.state.copy()
         v = action[0]
         theta = action[1]
         dx = v*cos(theta)
