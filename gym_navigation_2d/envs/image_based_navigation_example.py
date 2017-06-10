@@ -1,7 +1,7 @@
 import gym
 import gym_navigation_2d
 
-from env_generator import EnvironmentGenerator, Environment, EnvironmentCollection, Obstacle
+from env_generator import Environment, EnvironmentCollection, Obstacle
 import numpy as np
 import time
 import cv2

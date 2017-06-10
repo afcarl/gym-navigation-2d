@@ -29,6 +29,11 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
         self.world = worlds.map_collection[world_idx]
         self.set_destination(destination)
 
+        assert not (self.destination is None)
+        self.init_position = initial_position
+        self.state = self.init_position.copy()
+        
+        
         self.max_observation_range = max_observation_range
         self.destination_tolerance_range = destination_tolerance_range
         self.viewer = None
@@ -36,7 +41,8 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
         self.max_speed = 5
         self.add_self_position_to_observation = add_self_position_to_observation
         self.add_goal_position_to_observation = add_goal_position_to_observation
-        self.set_initial_position(initial_position)
+
+
         low = np.array([0.0, 0.0])
         high = np.array([self.max_speed, 2*pi])
         self.action_space = Box(low, high)#Tuple( (Box(0.0, self.max_speed, (1,)), Box(0.0, 2*pi, (1,))) )
@@ -52,13 +58,6 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
 
         self.observation_space = Box(np.array(low), np.array(high))
         self.observation = []
-
-    def set_initial_position(self, init_position):
-        assert not (self.destination is None)
-        self.init_position = init_position
-        self.state = self.init_position.copy()
-        self.observation = self._get_observation(self.state)
-
 
     def set_destination(self, destination):
         self.destination = destination
