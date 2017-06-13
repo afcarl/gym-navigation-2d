@@ -16,7 +16,9 @@ class ImageBasedNavigation2DEnv(StateBasedMDPNavigation2DEnv):
 
     def __init__(self, *args, **kwargs):
         StateBasedMDPNavigation2DEnv.__init__(self, *args, **kwargs)
-        self.observation_space = Box(0., 255., self.world.image.shape)
+        self.obs_img_shape = (160, 120, 3)
+        
+        self.observation_space = Box(0., 255., (self.obs_img_shape[1], self.obs_img_shape[0], 3))
 
     def _get_observation(self, state):
         image = self.world.image.copy()
@@ -30,4 +32,6 @@ class ImageBasedNavigation2DEnv(StateBasedMDPNavigation2DEnv):
         cv2.circle(image, center=(state_col, state_row), radius=5, color=(0,0,0), thickness=-1)
         cv2.circle(image, center=(dest_col, dest_row), radius=int(self.destination_tolerance_range), color=(255,0,0), thickness=-1)
         image = cv2.flip(image, flipCode=0)
+        image = cv2.resize(image, self.obs_img_shape[0:2])
+        #image = image.astype(dtype='float32')
         return image

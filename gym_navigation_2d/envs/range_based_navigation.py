@@ -29,11 +29,11 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
 
         self.world = worlds.map_collection[world_idx]
         self.destination = destination
-        
+
         assert not (self.destination is None)
         self.init_position = initial_position
         self.state = self.init_position.copy()
-        
+
         self.max_observation_range = max_observation_range
         self.destination_tolerance_range = destination_tolerance_range
         self.viewer = None
@@ -59,7 +59,6 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
 
         self.observation_space = Box(np.array(low), np.array(high))
         self.observation = []
-        
 
     def _get_observation(self, state):
         delta_angle = 2*pi/self.num_beams

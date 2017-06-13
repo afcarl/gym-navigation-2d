@@ -11,10 +11,16 @@ def callback(lcl, glb):
     return is_solved
 
 def main():
-    env = gym.make('State-Based-MDP-Navigation-2d-Map0-Goal0-KnownGoalPosition-v0')
-    #env = gym.make('Image-Based-Navigation-2d-Map0-Goal0-v0')
+    env = gym.make('Image-Based-Navigation-2d-Map0-Goal0-v0')
     env.action_space = spaces.Discrete(100)
-    model = deepq.models.mlp([64])
+
+    num_output_filters = 8
+    kernel_size = (5,5)
+    stride = 1
+
+    convs = [(num_output_filters, kernel_size, stride)]
+    hidden_fcns = [64]
+    model = deepq.models.cnn_to_mlp(convs, hidden_fcns, dueling=False)
 
     act = deepq.learn(
         env,
