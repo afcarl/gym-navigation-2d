@@ -21,22 +21,29 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
                  max_observation_range = 100.0,
                  destination_tolerance_range=20.0,
                  add_self_position_to_observation=False,
-                 add_goal_position_to_observation=False):
+                 add_goal_position_to_observation=False,
+                 add_map_to_observation=False):
 
         worlds = EnvironmentCollection()
         worlds.read(worlds_pickle_filename)
 
         self.world = worlds.map_collection[world_idx]
-        self.set_destination(destination)
-
+        self.destination = destination
+        
+        assert not (self.destination is None)
+        self.init_position = initial_position
+        self.state = self.init_position.copy()
+        
         self.max_observation_range = max_observation_range
         self.destination_tolerance_range = destination_tolerance_range
         self.viewer = None
         self.num_beams = 16
         self.max_speed = 5
+
         self.add_self_position_to_observation = add_self_position_to_observation
         self.add_goal_position_to_observation = add_goal_position_to_observation
-        self.set_initial_position(initial_position)
+        self.add_map_to_observation = add_map_to_observation
+        
         low = np.array([0.0, 0.0])
         high = np.array([self.max_speed, 2*pi])
         self.action_space = Box(low, high)#Tuple( (Box(0.0, self.max_speed, (1,)), Box(0.0, 2*pi, (1,))) )
@@ -52,16 +59,7 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
 
         self.observation_space = Box(np.array(low), np.array(high))
         self.observation = []
-
-    def set_initial_position(self, init_position):
-        assert not (self.destination is None)
-        self.init_position = init_position
-        self.state = self.init_position.copy()
-        self.observation = self._get_observation(self.state)
-
-
-    def set_destination(self, destination):
-        self.destination = destination
+        
 
     def _get_observation(self, state):
         delta_angle = 2*pi/self.num_beams
@@ -76,15 +74,35 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
             ranges = np.concatenate([ranges, self.destination])
         return ranges
 
-    def _step(self, action):
-        old_state = self.state
-        v = action[0]
-        theta = action[1]
+    def _dynamics(self, action, old_state):
+
+        if type(action) == type(np.int64(0)):
+            assert (action < 100 and action >= 0)
+            
+            i = int(action) / 10
+            j = int(action) % 10
+
+            dv = self.max_speed / 10.0
+            dtheta = 2*pi / 10.0
+
+            v = i * dv
+            theta = j * dtheta
+    
+        else:
+            v = action[0]
+            theta = action[1]
+
         dx = v*cos(theta)
         dy = v*sin(theta)
 
-        self.state += np.array([dx, dy])
-
+        new_state = old_state + np.array([dx, dy])        
+        return new_state
+        
+        
+    def _step(self, action):
+        old_state = self.state.copy()
+        self.state = self._dynamics(action, old_state)
+        
         reward = -1 # minus 1 for every timestep you're not in the goal
         done = False
         info = {}
@@ -191,24 +209,48 @@ class LimitedRangeBasedPOMDPNavigation2DEnv(gym.Env):
 
 
 class StateBasedMDPNavigation2DEnv(LimitedRangeBasedPOMDPNavigation2DEnv):
+    
     def __init__(self, *args, **kwargs):
         LimitedRangeBasedPOMDPNavigation2DEnv.__init__(self, *args, **kwargs)
-        low = [-float('inf'), -float('inf'), 0.0, 0.0]
-        high = [float('inf'), float('inf'), float('inf'), 2*pi]
+        
+        self.rectangles = [(c[0], c[1], w, h) for obs in self.world.obstacles for c, w, h in zip(obs.rectangle_centers,
+                                                                                                 obs.rectangle_widths,
+                                                                                                 obs.rectangle_heights)]
 
+        self.rectangle_obs_vector = [el for rect in self.rectangles for el in rect]
+
+        
+        inf = 1000000.0
+        low = [-inf, -inf, 0.0, 0.0] 
+        high = [inf, inf, inf, 2*pi]
+
+        if self.add_map_to_observation:
+            low.extend([-inf, -inf, self.world.x_range[0], self.world.y_range[0]] * len(self.rectangles))
+            high.extend([inf,  inf, self.world.x_range[1], self.world.y_range[1]] * len(self.rectangles))
+
+        
         if self.add_goal_position_to_observation:
-            low.extend([-10000., -10000.]) # x and y coords
-            high.extend([10000., 10000.])
+            low.extend([-inf, -inf]) # x and y coords
+            high.extend([inf, inf])
 
+        
         self.observation_space = Box(np.array(low), np.array(high))
 
+        
     def _plot_observation(self, viewer, state, observation):
         pass
 
+    
     def _get_observation(self, state):
-        # return state
         dist_to_closest_obstacle, absolute_angle_to_closest_obstacle = self.world.range_and_bearing_to_closest_obstacle(state[0], state[1])
-        obs = np.array([state[0], state[1], dist_to_closest_obstacle, absolute_angle_to_closest_obstacle])
+        obs =  [state[0], state[1], dist_to_closest_obstacle, absolute_angle_to_closest_obstacle] 
+
+        if self.add_map_to_observation:
+            obs.extend(self.rectangle_obs_vector)
+
+        obs = np.array(obs)
+
         if self.add_goal_position_to_observation:
             obs = np.concatenate([obs, self.destination])
+            
         return obs

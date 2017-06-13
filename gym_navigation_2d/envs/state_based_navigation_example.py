@@ -6,7 +6,7 @@ import numpy as np
 import time
 import timeit
 
-env = gym.make('State-Based-MDP-Navigation-2d-Map0-Goal2-v0')
+env = gym.make('State-Based-MDP-Navigation-2d-Map0-Goal2-KnownGoalPositionAndMap-v0')
 
 observation = env.reset()
 dt1 = []

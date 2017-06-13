@@ -29,6 +29,15 @@ for i in range(10):
             kwargs=dict(world_idx=i, destination = idx_to_goal[i][j], add_self_position_to_observation=True, add_goal_position_to_observation=True)
         )
         register(
+            id='State-Based-MDP-Navigation-2d-Map%d-Goal%d-KnownGoalPositionAndMap-v0' % (i, j),
+            entry_point='gym_navigation_2d.envs:StateBasedMDPNavigation2DEnv',
+            max_episode_steps=1000,
+            kwargs=dict(world_idx=i, destination = idx_to_goal[i][j],
+                        add_self_position_to_observation=True,
+                        add_goal_position_to_observation=True,
+                        add_map_to_observation=True)
+        )
+        register(
             id='Limited-Range-Based-POMDP-Navigation-2d-Map%d-Goal%d-v0' % (i, j),
             entry_point='gym_navigation_2d.envs:LimitedRangeBasedPOMDPNavigation2DEnv',
             max_episode_steps=1000,
