@@ -6,7 +6,7 @@ import gym_navigation_2d
 
 
 def main(policy_pkl_file):
-    env = gym.make('Image-Based-Navigation-2d-Map0-Goal0-v0')
+    env = gym.make('State-Based-Navigation-2d-Map0-Goal0-v0')
     act = deepq.load(policy_pkl_file)
 
     while True:
@@ -21,7 +21,7 @@ def main(policy_pkl_file):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print ("Usage: python3 run_dqn_on_image.py policy.pkl")
+        print ("Usage: python3 run_dqn_on_state.py policy.pkl")
         sys.exit(1)
     
     main(sys.argv[1])
